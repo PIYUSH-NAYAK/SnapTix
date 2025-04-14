@@ -36,29 +36,35 @@ const fetchEventData = async (userInput) => {
 
 const parseEventResponse = (response) => {
     const eventSections = response.split("\n\n");
-  
-    const events = eventSections.map(event => {
-      const lines = event.split("\n").map(line => line.trim()).filter(line => line.length > 0);
-  
-      if (lines.length < 2) {
-        return null;
-      }
-  
-      const nameLine = lines[0];
-      const dateLine = lines[1];
-      const venueLine = lines[2] || '';
 
-      const name = nameLine.replace(/^•\s*/, "").trim();
-      const date = dateLine.replace(/^Date:\s*/, "").trim();
-      const venue = venueLine.replace(/^Venue:\s*/, "").trim();
-  
-      const eventObj = { name, date, venue: venue || "Venue information not available" };
-  
-      return eventObj;
+    const events = eventSections.map(event => {
+        const lines = event.split("\n").map(line => line.trim()).filter(line => line.length > 0);
+
+        if (lines.length < 2) {
+            return null;
+        }
+
+        const nameLine = lines[0];
+        const dateLine = lines[1];
+        const venueLine = lines[2] || '';
+
+        // Remove markdown formatting (like **bold text** or *italic text*)
+        const cleanName = nameLine.replace(/^•\s*/, "").replace(/\*\*/g, "").trim();
+        const cleanDate = dateLine.replace(/^Date:\s*/, "").trim();
+        const cleanVenue = venueLine.replace(/^Venue:\s*/, "").trim();
+
+        const eventObj = { 
+            name: cleanName, 
+            date: cleanDate, 
+            venue: cleanVenue || "Venue information not available" 
+        };
+
+        return eventObj;
     }).filter(event => event !== null);
-  
+
     return events;
 };
+
 
 module.exports = { fetchEventData };
 
