@@ -1,28 +1,47 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from "react";
+import axios from "axios";
 
 export default function ChatPage() {
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim()) return;
 
-    const userMessage = { role: 'user', content: input };
+    const userMessage = { role: "user", content: input };
     setMessages((prev) => [...prev, userMessage]);
-    setInput('');
+    setInput("");
     setIsTyping(true);
 
-    setTimeout(() => {
+    try {
+      const response = await axios.post("http://localhost:5000/api/groq", {
+        query: input,
+      });
+
+      const eventData = response?.data?.response;
+
       const botMessage = {
-        role: 'bot',
-        content: `🎉 Looking for events in "${userMessage.content}"... stay tuned!`,
+        role: "bot",
+        content:
+          Array.isArray(eventData) && eventData.length > 0
+            ? eventData // Pass the array directly
+            : "Sorry, I couldn't find any events for you!",
+      };
+
+      setMessages((prev) => [...prev, botMessage]);
+    } catch (error) {
+      console.error("Error fetching event data:", error);
+      const botMessage = {
+        role: "bot",
+        content: "⚠️ Oops! Something went wrong. Please try again.",
       };
       setMessages((prev) => [...prev, botMessage]);
+    } finally {
       setIsTyping(false);
-    }, 1200); // Simulate typing delay
+    }
   };
 
   return (
@@ -30,7 +49,7 @@ export default function ChatPage() {
       className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4 bg-cover bg-center relative overflow-hidden"
       style={{
         backgroundImage:
-          'url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWI5azRhZWZ6MHZ2bDJvcGljdDZlN2JqZm5za2lldGZvMWZ5Z2F4eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1pAht1Y4VovRFvvjXi/giphy.gif)',
+          "url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWI5azRhZWZ6MHZ2bDJvcGljdDZlN2JqZm5za2lldGZvMWZ5Z2F4eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1pAht1Y4VovRFvvjXi/giphy.gif)",
       }}
     >
       {/* Overlay Blur */}
@@ -46,15 +65,41 @@ export default function ChatPage() {
 
         <div className="rounded-xl p-4 h-96 overflow-y-auto bg-gray-900/60 shadow-inner mb-6 text-sm md:text-base">
           {messages.map((msg, i) => (
-            <div key={i} className={`mb-3 ${msg.role === 'user' ? 'text-right' : 'text-left'}`}>
+            <div
+              key={i}
+              className={`mb-3 ${
+                msg.role === "user" ? "text-right" : "text-left"
+              }`}
+            >
               <div
                 className={`inline-block px-4 py-2 rounded-2xl max-w-[85%] ${
-                  msg.role === 'user'
-                    ? 'bg-gradient-to-br from-blue-500 to-purple-600'
-                    : 'bg-gradient-to-br from-pink-500 to-red-500'
+                  msg.role === "user"
+                    ? "bg-gradient-to-br from-blue-500 to-purple-600"
+                    : "bg-gradient-to-br from-pink-500 to-red-500"
                 }`}
               >
-                {msg.content}
+                {typeof msg.content === "string" ? (
+                  msg.content
+                ) : (
+                  <table className="table-auto text-left text-white w-full text-sm">
+                    <thead>
+                      <tr className="text-pink-200 border-b border-white/20">
+                        <th className="px-2 py-1">🎉 Event</th>
+                        <th className="px-2 py-1">📅 Date</th>
+                        <th className="px-2 py-1">📍 Venue</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {msg.content.map((event, idx) => (
+                        <tr key={idx} className="border-b border-white/10">
+                          <td className="px-2 py-1">{event.name}</td>
+                          <td className="px-2 py-1">{event.date}</td>
+                          <td className="px-2 py-1">{event.venue}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
               </div>
             </div>
           ))}
@@ -71,7 +116,7 @@ export default function ChatPage() {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask me about events in Mumbai,Delhi,Bengaluru..."
+            placeholder="Ask me about events in Mumbai, Delhi, Bengaluru..."
             className="flex-grow px-4 py-3 rounded-xl bg-gray-800/80 text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
           />
           <button
