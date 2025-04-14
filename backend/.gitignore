@@ -1,0 +1,47 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+.env.*
+
+# Build output
+dist/
+build/
+
+# Dependency directories
+bower_components/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+
+# Temporary files
+*.swp
+*.swo
+
+# Coverage reports
+coverage/
+
+# Testing
+*.test.js
+*.spec.js
+
+# TypeScript (if using)
+*.tsbuildinfo
+
+# npm package lock files (optional, only if you don't want to commit them)
+package-lock.json
+yarn.lock
+
+# Temporary directory
+tmp/
