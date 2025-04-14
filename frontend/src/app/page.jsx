@@ -1,9 +1,16 @@
 import React from 'react'
+import Home from './mycomp/home'
 
 const App = () => {
   return (
-    <div 
-    >App</div>
+    <div className='bg-red-300'
+    >
+      <div>
+        < Home/>
+      </div>
+    </div>
+    
+    
   )
 }
 
