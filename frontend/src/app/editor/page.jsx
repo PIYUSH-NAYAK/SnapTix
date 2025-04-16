@@ -36,7 +36,7 @@ export default function ChatPage() {
       console.error("Error fetching event data:", error);
       const botMessage = {
         role: "bot",
-        content: "⚠️ Oops! Something went wrong. Please try again.",
+        content: "⚠ Oops! Something went wrong. Please try again.",
       };
       setMessages((prev) => [...prev, botMessage]);
     } finally {
@@ -57,7 +57,7 @@ export default function ChatPage() {
 
       <div className="relative z-10 w-full max-w-4xl rounded-3xl p-6 md:p-10">
         <h1 className="text-3xl md:text-4xl font-extrabold mb-2 text-pink-400 neon-glow text-center">
-          🎟️ SnapTix AI Assist
+          🎟 SnapTix AI Assist
         </h1>
         <p className="text-gray-300 mb-6 text-center text-sm md:text-base">
           Discover concerts, fests, movies & more — Just ask!
