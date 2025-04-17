@@ -7,8 +7,7 @@ export default function EventsPage() {
   const [events, setEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-  // Search filters
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
     type: '',
@@ -16,7 +15,6 @@ export default function EventsPage() {
     genre: ''
   });
 
-  // Distinct options for filters
   const [locations, setLocations] = useState([]);
   const [types, setTypes] = useState([]);
   const [genres, setGenres] = useState([]);
@@ -27,45 +25,42 @@ export default function EventsPage() {
       if (result.success) {
         setEvents(result.data);
         setFilteredEvents(result.data);
-        
-        // Extract distinct options for filters
+
         const locationSet = new Set(result.data.map(event => event.location));
         const typeSet = new Set(result.data.map(event => event.type));
-        const genreSet = new Set(result.data.map(event => event.genre));
-        
+        const genreSet = new Set(result.data.filter(event => event.genre).map(event => event.genre));
+
         setLocations(Array.from(locationSet).sort());
         setTypes(Array.from(typeSet).sort());
         setGenres(Array.from(genreSet).sort());
       }
       setLoading(false);
     };
-    
+
     loadEvents();
   }, []);
 
   useEffect(() => {
     const applyFilters = async () => {
       setLoading(true);
-      
-      // If we have active filters, use the API's search endpoint
+
       if (filters.type || filters.location || filters.genre || searchTerm) {
         const searchParams = {
           ...filters,
           title: searchTerm
         };
-        
+
         const result = await searchEvents(searchParams);
         if (result.success) {
           setFilteredEvents(result.data);
         }
       } else {
-        // No filters, show all events
         setFilteredEvents(events);
       }
-      
+
       setLoading(false);
     };
-    
+
     applyFilters();
   }, [filters, searchTerm, events]);
 
@@ -103,7 +98,7 @@ export default function EventsPage() {
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-8">Explore Events</h1>
-        
+
         {/* Search and filter bar */}
         <div className="bg-gray-800 p-4 rounded-xl mb-8">
           <div className="flex flex-col md:flex-row gap-4">
@@ -116,11 +111,11 @@ export default function EventsPage() {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 flex-1">
-              <select 
-                name="type" 
-                value={filters.type} 
+              <select
+                name="type"
+                value={filters.type}
                 onChange={handleFilterChange}
                 className="bg-gray-700 text-white px-4 py-2 rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none"
               >
@@ -129,10 +124,10 @@ export default function EventsPage() {
                   <option key={type} value={type}>{type}</option>
                 ))}
               </select>
-              
-              <select 
-                name="location" 
-                value={filters.location} 
+
+              <select
+                name="location"
+                value={filters.location}
                 onChange={handleFilterChange}
                 className="bg-gray-700 text-white px-4 py-2 rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none"
               >
@@ -141,10 +136,10 @@ export default function EventsPage() {
                   <option key={location} value={location}>{location}</option>
                 ))}
               </select>
-              
-              <select 
-                name="genre" 
-                value={filters.genre} 
+
+              <select
+                name="genre"
+                value={filters.genre}
                 onChange={handleFilterChange}
                 className="bg-gray-700 text-white px-4 py-2 rounded-lg focus:ring-2 focus:ring-pink-500 focus:outline-none"
               >
@@ -154,8 +149,8 @@ export default function EventsPage() {
                 ))}
               </select>
             </div>
-            
-            <button 
+
+            <button
               onClick={clearFilters}
               className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg"
             >
@@ -163,7 +158,7 @@ export default function EventsPage() {
             </button>
           </div>
         </div>
-        
+
         {/* Events grid */}
         {loading ? (
           <div className="flex justify-center py-16">
@@ -180,6 +175,21 @@ export default function EventsPage() {
               <Link href={`/events/${event.id}`} key={event.id} className="group">
                 <div className="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-pink-500/20 transition h-full flex flex-col">
                   <div className="h-48 bg-gray-700 relative">
+                    {event.image ? (
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = `https://source.unsplash.com/random/800x600/?${event.type || 'event'}`;
+                        }}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-3xl font-bold text-gray-600">{event.type?.charAt(0).toUpperCase() || 'E'}</span>
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4">
                       <span className="text-white font-medium">View Details</span>
                     </div>
@@ -190,10 +200,10 @@ export default function EventsPage() {
                       <h3 className="text-lg font-semibold group-hover:text-pink-400 transition">{event.title}</h3>
                       <p className="text-sm text-gray-400 mt-1">
                         {event.artist && <span className="block">By {event.artist}</span>}
-                        {event.genre && <span className="block text-xs mt-1">{event.genre}</span>}
+                        {event.genre && <span className="block">Genre: {event.genre}</span>}
                       </p>
                     </div>
-                    <div className="mt-4 text-sm text-gray-400">
+                    <div className="mt-3 text-sm text-gray-400">
                       <div className="flex items-center">
                         <svg className="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
@@ -206,9 +216,11 @@ export default function EventsPage() {
                         </svg>
                         <span>{event.location}</span>
                       </div>
-                      <div className="mt-2 text-pink-500 font-medium">
-                        {event.price}
-                      </div>
+                      {event.price && (
+                        <div className="mt-2 text-pink-500 font-medium">
+                          {event.price}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

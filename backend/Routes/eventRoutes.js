@@ -45,12 +45,22 @@ router.get('/events/search', (req, res) => {
 });
 
 // Get event by ID
+// This should be in your backend/Routes/eventRoutes.js
 router.get('/events/:id', (req, res) => {
-  const event = eventCache.find(e => e.id === req.params.id);
+  const { id } = req.params;
+  const event = eventCache.find(e => e.id === id);
+
   if (!event) {
-    return res.status(404).json({ success: false, message: "Event not found" });
+    return res.status(404).json({
+      success: false,
+      message: 'Event not found'
+    });
   }
-  res.json({ success: true, data: event });
+
+  res.json({
+    success: true,
+    data: event
+  });
 });
 
 module.exports = router;

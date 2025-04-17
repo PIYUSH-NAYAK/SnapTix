@@ -45,3 +45,17 @@ export const askAI = async (query) => {
     };
   }
 };
+// Add this function to your existing chatApi.js file
+export async function fetchEventById(eventId) {
+  try {
+    const response = await fetch(`http://localhost:5000/api/events/${eventId}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching event details:', error);
+    return { 
+      success: false, 
+      error: error.message 
+    };
+  }
+}
