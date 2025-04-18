@@ -1,0 +1,27 @@
+{
+    "name": "snaptix-contracts",
+    "version": "1.0.0",
+    "description": "Smart contracts for SnapTix NFT ticketing platform",
+    "main": "index.js",
+    "scripts": {
+        "compile": "hardhat compile",
+        "test": "hardhat test",
+        "deploy:testnet": "hardhat run scripts/deploy.js --network base-sepolia",
+        "deploy:mainnet": "hardhat run scripts/deploy.js --network base"
+    },
+    "keywords": [
+        "nft",
+        "tickets",
+        "blockchain",
+        "base"
+    ],
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+        "@nomiclabs/hardhat-etherscan": "^3.1.8",
+        "@openzeppelin/contracts": "^4.9.6",
+        "dotenv": "^16.5.0",
+        "hardhat": "^2.23.0"
+    }
+}
