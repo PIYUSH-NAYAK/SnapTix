@@ -21,6 +21,57 @@ async function main() {
   const ticketMarketplaceAddress = await ticketMarketplace.getAddress();
   console.log(`TicketMarketplace deployed to: ${ticketMarketplaceAddress}`);
 
+  // Create initial events in the contract
+  console.log("Creating initial events in the contract...");
+  
+  // Sample events data
+  const events = [
+    {
+      id: 1,
+      title: "Taylor Swift Concert",
+      location: "Madison Square Garden, New York"
+    },
+    {
+      id: 2,
+      title: "NBA Finals Game 1",
+      location: "Chase Center, San Francisco"
+    },
+    {
+      id: 3,
+      title: "Coldplay World Tour",
+      location: "Wembley Stadium, London"
+    },
+    {
+      id: 4,
+      title: "Tech Conference 2025",
+      location: "Moscone Center, San Francisco"
+    },
+    {
+      id: 5,
+      title: "Comic-Con International",
+      location: "San Diego Convention Center"
+    }
+  ];
+  
+  // Create events on the blockchain
+  for (const event of events) {
+    console.log(`Creating event: ${event.title}`);
+    try {
+      const currentTime = Math.floor(Date.now() / 1000);
+      await ticketNFT.createEvent(
+        event.title,
+        currentTime, // Start time: now
+        currentTime + (365 * 24 * 60 * 60), // End in 1 year
+        event.location,
+        100, // Max tickets
+        true // Reserved seating
+      );
+      console.log(`Event ${event.id}: ${event.title} created successfully`);
+    } catch (error) {
+      console.error(`Failed to create event ${event.id}:`, error.message);
+    }
+  }
+
   console.log("Deployment complete!");
 
   // Export contract addresses for frontend config

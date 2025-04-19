@@ -35,6 +35,16 @@ export const getEventById = async (id) => {
 export const askAI = async (query) => {
   try {
     const response = await axios.post(`${API_URL}/groq`, { query });
+    
+    // If the response contains the rejection message, return an empty events array
+    if (response.data.reply && response.data.reply.includes("I think there might be some confusion!")) {
+      return {
+        success: true,
+        reply: response.data.reply,
+        events: [] // Don't return any events for non-event queries
+      };
+    }
+    
     return response.data;
   } catch (error) {
     console.error('Error querying AI:', error);
@@ -59,3 +69,16 @@ export async function fetchEventById(eventId) {
     };
   }
 }
+// Add this new function to your existing file
+
+export const getSuggestedEvents = async (eventId) => {
+  try {
+    const response = await axios.get(`${API_URL}/events/suggested`, {
+      params: { id: eventId }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching suggested events:', error);
+    return { success: false, data: [] };
+  }
+};

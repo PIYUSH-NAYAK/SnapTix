@@ -58,19 +58,16 @@ export default function AIAssistant() {
     router.push(`/events/${eventId}`);
   };
 
+  // This helper function determines if we should show event recommendations
+  const shouldShowEvents = (message) => {
+    // Don't show events if this is a "confusion" message
+    return message.events && 
+           message.events.length > 0 && 
+           !message.content.includes("I think there might be some confusion!");
+  };
+
   return (
     <main className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 to-black text-white">
-      <header className="bg-black/30 backdrop-blur-sm py-6 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link href="/" className="text-3xl font-bold text-pink-500">SnapTix</Link>
-          <nav className="space-x-6">
-            <Link href="/events" className="text-white hover:text-pink-400 transition">Events</Link>
-            <Link href="/discover" className="text-white hover:text-pink-400 transition">Discover</Link>
-            <Link href="/ai-assistant" className="text-pink-400">AI Assistant</Link>
-          </nav>
-        </div>
-      </header>
-
       <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full p-4 md:p-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
@@ -92,7 +89,7 @@ export default function AIAssistant() {
                 }`}>
                   <p>{message.content}</p>
                   
-                  {message.events && message.events.length > 0 && (
+                  {shouldShowEvents(message) && (
                     <div className="mt-4 border-t border-gray-600 pt-3">
                       <p className="font-medium mb-2">Recommended Events:</p>
                       <div className="space-y-2">

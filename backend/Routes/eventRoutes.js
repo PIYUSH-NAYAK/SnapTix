@@ -43,6 +43,54 @@ router.get('/events/search', (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 });
+// Add this new route for suggested events
+
+// Get suggested events based on an event ID
+router.get('/events/suggested', (req, res) => {
+  try {
+    const { id } = req.query;
+    
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: 'Event ID is required'
+      });
+    }
+    
+    const currentEvent = eventCache.find(event => event.id === id);
+    
+    if (!currentEvent) {
+      return res.status(404).json({
+        success: false,
+        message: 'Event not found'
+      });
+    }
+    
+    // Find events with the same genre or similar tags
+    let suggestedEvents = eventCache.filter(event => 
+      event.id !== id && 
+      (event.genre === currentEvent.genre || 
+       (event.tags && currentEvent.tags && 
+        event.tags.some(tag => currentEvent.tags.includes(tag))))
+    );
+    
+    // Limit to 3 suggestions
+    suggestedEvents = suggestedEvents.slice(0, 3);
+    
+    res.json({
+      success: true,
+      data: suggestedEvents
+    });
+    
+  } catch (error) {
+    console.error('Error getting suggested events:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error getting suggested events',
+      error: error.message
+    });
+  }
+});
 
 // Get event by ID
 // This should be in your backend/Routes/eventRoutes.js

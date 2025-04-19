@@ -1,3 +1,7 @@
+function getRandomPrice(min = 50, max = 200) {
+  return `₹${Math.floor(Math.random() * (max - min + 1)) + min}`;
+}
+
 const eventsList = [
   {
     id: '1',
@@ -8,7 +12,7 @@ const eventsList = [
     date: '2025-05-21',
     time: '8:00 PM',
     location: 'Delhi',
-    price: '₹3,000 - ₹15,000',
+    price: getRandomPrice(),
     description: 'Coldplay returns to India on their 2025 world tour',
     // Change this line:
     image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=800&q=80', // Added comma here
@@ -23,7 +27,7 @@ const eventsList = [
     date: '2025-06-15',
     time: '7:30 PM',
     location: 'Mumbai',
-    price: '₹2,000 - ₹10,000',
+    price: getRandomPrice(),
     description: 'An evening of musical magic with the Mozart of Madras',
     image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=800&q=80',
     tags: ['music', 'indian', 'bollywood']
@@ -78,7 +82,7 @@ const eventsList = [
   date: '2025-05-30',
   time: '7:00 PM',
   location: 'Ahmedabad',
-  price: '₹1,500 - ₹25,000',
+  price: getRandomPrice(),
   description: 'The grand finale of IPL 2025',
   image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
   tags: ['sports', 'cricket', 'ipl']
@@ -93,7 +97,7 @@ const eventsList = [
   date: '2025-09-05',
   time: '9:00 AM',
   location: 'Bengaluru',
-  price: '₹2500 - ₹15000',
+  price: getRandomPrice(),
   description: 'India\'s largest technology expo featuring latest innovations, workshops and tech talks',
   image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -111,7 +115,7 @@ const eventsList = [
   date: '2025-10-09',
   time: '6:00 PM',
   location: 'Ahmedabad',
-  price: '₹1150 - ₹8618',
+  price: getRandomPrice(),
   description: 'Clash - Ahmedabad happening live in Ahmedabad',
   image: 'https://images.unsplash.com/photo-1593642532454-e138e28a63f4?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -129,7 +133,7 @@ const eventsList = [
   date: '2025-09-12',
   time: '9:30 AM',
   location: 'Chennai',
-  price: '₹500 - ₹5,000',
+  price: getRandomPrice(),
   description: 'Day 1 of the first test match between India and Australia',
   image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=800&q=80',
   tags: ['sports', 'cricket', 'international']
@@ -143,7 +147,7 @@ const eventsList = [
   date: '2025-12-28',
   time: '4:00 PM',
   location: 'Goa',
-  price: '₹4,000 - ₹12,000',
+  price: getRandomPrice(),
   description: 'Asia\'s biggest electronic dance music festival',
   image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
   tags: ['music', 'festival', 'edm']
@@ -158,7 +162,7 @@ const eventsList = [
   date: '2026-01-26',
   time: '4:00 PM',
   location: 'Mumbai',
-  price: '₹1720 - ₹3701',
+  price: getRandomPrice(),
   description: 'Festival - Mumbai happening live in Mumbai',
   image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -175,7 +179,7 @@ const eventsList = [
   date: '2026-04-18',
   time: '12:00 PM',
   location: 'Delhi',
-  price: '₹621 - ₹7134',
+  price: getRandomPrice(),
   description: 'Festival - Delhi happening live in Delhi',
   image: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -194,7 +198,7 @@ const eventsList = [
   date: '2025-08-30',
   time: '12:00 PM',
   location: 'Kolkata',
-  price: '₹1376 - ₹6832',
+  price: getRandomPrice(),
   description: 'Experience - Kolkata happening live in Kolkata',
   image: 'https://images.unsplash.com/photo-1564585222527-c2777a5bc6cb?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -211,7 +215,7 @@ const eventsList = [
   date: '2025-08-02',
   time: '12:00 PM',
   location: 'Bengaluru',
-  price: '₹1242 - ₹10298',
+  price: getRandomPrice(),
   description: 'Extravaganza - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1603190287605-e6ade32fa852?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -228,7 +232,7 @@ const eventsList = [
   date: '2025-07-24',
   time: '8:00 PM',
   location: 'Delhi',
-  price: '₹1466 - ₹9567',
+  price: getRandomPrice(),
   description: 'Live - Delhi happening live in Delhi',
   image: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -245,7 +249,7 @@ const eventsList = [
   date: '2025-08-28',
   time: '6:00 PM',
   location: 'Ahmedabad',
-  price: '₹1557 - ₹9200',
+  price: getRandomPrice(),
   description: 'Experience - Ahmedabad happening live in Ahmedabad',
   image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -262,7 +266,7 @@ const eventsList = [
   date: '2026-04-08',
   time: '8:00 PM',
   location: 'Jaipur',
-  price: '₹1268 - ₹11474',
+  price: getRandomPrice(),
   description: 'Extravaganza - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -279,7 +283,7 @@ const eventsList = [
   date: '2026-03-16',
   time: '6:00 PM',
   location: 'Jaipur',
-  price: '₹895 - ₹7993',
+  price: getRandomPrice(),
   description: 'Live - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1504680177321-2e6a879aac86?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -296,7 +300,7 @@ const eventsList = [
   date: '2026-04-19',
   time: '6:00 PM',
   location: 'Pune',
-  price: '₹601 - ₹9208',
+  price: getRandomPrice(),
   description: 'Experience - Pune happening live in Pune',
   image: 'https://images.unsplash.com/photo-1527224538127-2104bb71c51b?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -313,7 +317,7 @@ const eventsList = [
   date: '2025-11-13',
   time: '4:00 PM',
   location: 'Pune',
-  price: '₹1910 - ₹7269',
+  price: getRandomPrice(),
   description: 'Extravaganza - Pune happening live in Pune',
   image: 'https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -330,7 +334,7 @@ const eventsList = [
   date: '2025-08-05',
   time: '7:00 PM',
   location: 'Mumbai',
-  price: '₹2,000 - ₹10,000',
+  price: getRandomPrice(),
   description: 'Experience the magic of Arijit Singh\'s soulful voice live in concert',
   image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
   tags: ['music', 'bollywood', 'vocal']
@@ -345,7 +349,7 @@ const eventsList = [
   date: '2026-04-07',
   time: '12:00 PM',
   location: 'Bengaluru',
-  price: '₹806 - ₹10698',
+  price: getRandomPrice(),
   description: 'Live - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -363,7 +367,7 @@ const eventsList = [
   date: '2026-04-02',
   time: '10:00 AM',
   location: 'Delhi',
-  price: '₹1383 - ₹8388',
+  price: getRandomPrice(),
   description: 'Clash - Delhi happening live in Delhi',
   image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -381,7 +385,7 @@ const eventsList = [
   date: '2025-07-05',
   time: '7:00 PM',
   location: 'Pune',
-  price: '₹1183 - ₹14746',
+  price: getRandomPrice(),
   description: 'Live - Pune happening live in Pune',
   image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -398,7 +402,7 @@ const eventsList = [
   date: '2025-07-16',
   time: '10:00 AM',
   location: 'Kolkata',
-  price: '₹828 - ₹12079',
+  price: getRandomPrice(),
   description: 'Madness - Kolkata happening live in Kolkata',
   image: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -415,7 +419,7 @@ const eventsList = [
   date: '2025-11-22',
   time: '10:00 AM',
   location: 'Hyderabad',
-  price: '₹626 - ₹5458',
+  price: getRandomPrice(),
   description: 'Live - Hyderabad happening live in Hyderabad',
   image: 'https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -432,7 +436,7 @@ const eventsList = [
   date: '2026-01-14',
   time: '4:00 PM',
   location: 'Chennai',
-  price: '₹1548 - ₹3560',
+  price: getRandomPrice(),
   description: 'Experience - Chennai happening live in Chennai',
   image: 'https://images.unsplash.com/photo-1550305080-4e029753abcf?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -449,7 +453,7 @@ const eventsList = [
   date: '2025-06-24',
   time: '10:00 AM',
   location: 'Chennai',
-  price: '₹410 - ₹5871',
+  price: getRandomPrice(),
   description: 'Extravaganza - Chennai happening live in Chennai',
   image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -466,7 +470,7 @@ const eventsList = [
   date: '2026-02-23',
   time: '4:00 PM',
   location: 'Jaipur',
-  price: '₹1433 - ₹5704',
+  price: getRandomPrice(),
   description: 'Madness - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1560523159-6b681a1e1852?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -483,7 +487,7 @@ const eventsList = [
   date: '2026-04-13',
   time: '7:00 PM',
   location: 'Bengaluru',
-  price: '₹1743 - ₹13086',
+  price: getRandomPrice(),
   description: 'Experience - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -500,7 +504,7 @@ const eventsList = [
   date: '2025-12-12',
   time: '8:00 PM',
   location: 'Bengaluru',
-  price: '₹445 - ₹13542',
+  price: getRandomPrice(),
   description: 'Tour - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -517,7 +521,7 @@ const eventsList = [
   date: '2026-04-10',
   time: '12:00 PM',
   location: 'Hyderabad',
-  price: '₹1398 - ₹12401',
+  price: getRandomPrice(),
   description: 'Tour - Hyderabad happening live in Hyderabad',
   image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -534,7 +538,7 @@ const eventsList = [
   date: '2025-04-27',
   time: '8:00 PM',
   location: 'Goa',
-  price: '₹1880 - ₹9290',
+  price: getRandomPrice(),
   description: 'Tour - Goa happening live in Goa',
   image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -551,7 +555,7 @@ const eventsList = [
   date: '2026-01-07',
   time: '6:00 PM',
   location: 'Goa',
-  price: '₹416 - ₹8244',
+  price: getRandomPrice(),
   description: 'Experience - Goa happening live in Goa',
   image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -568,7 +572,7 @@ const eventsList = [
   date: '2026-04-15',
   time: '12:00 PM',
   location: 'Kolkata',
-  price: '₹1722 - ₹3051',
+  price: getRandomPrice(),
   description: 'Festival - Kolkata happening live in Kolkata',
   image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -586,7 +590,7 @@ const eventsList = [
   date: '2025-12-10',
   time: '4:00 PM',
   location: 'Kolkata',
-  price: '₹1493 - ₹11643',
+  price: getRandomPrice(),
   description: 'Madness - Kolkata happening live in Kolkata',
   image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -603,7 +607,7 @@ const eventsList = [
   date: '2025-07-26',
   time: '4:00 PM',
   location: 'Goa',
-  price: '₹613 - ₹3508',
+  price: getRandomPrice(),
   description: 'Tour - Goa happening live in Goa',
   image: 'https://images.unsplash.com/photo-1527224857830-43a7acc85260?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -620,7 +624,7 @@ const eventsList = [
   date: '2025-08-28',
   time: '12:00 PM',
   location: 'Goa',
-  price: '₹1214 - ₹4798',
+  price: getRandomPrice(),
   description: 'Live - Goa happening live in Goa',
   image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -637,7 +641,7 @@ const eventsList = [
   date: '2025-06-03',
   time: '6:00 PM',
   location: 'Kolkata',
-  price: '₹833 - ₹5016',
+  price: getRandomPrice(),
   description: 'Clash - Kolkata happening live in Kolkata',
   image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -654,7 +658,7 @@ const eventsList = [
   date: '2026-02-13',
   time: '10:00 AM',
   location: 'Pune',
-  price: '₹982 - ₹9239',
+  price: getRandomPrice(),
   description: 'Festival - Pune happening live in Pune',
   image: 'https://images.unsplash.com/photo-1603190287605-e6ade32fa852?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -671,7 +675,7 @@ const eventsList = [
   date: '2025-05-10',
   time: '4:00 PM',
   location: 'Hyderabad',
-  price: '₹381 - ₹9157',
+  price: getRandomPrice(),
   description: 'Live - Hyderabad happening live in Hyderabad',
   image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -688,7 +692,7 @@ const eventsList = [
   date: '2025-08-07',
   time: '8:00 PM',
   location: 'Chennai',
-  price: '₹1793 - ₹12116',
+  price: getRandomPrice(),
   description: 'Festival - Chennai happening live in Chennai',
   image: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -705,7 +709,7 @@ const eventsList = [
   date: '2025-10-16',
   time: '12:00 PM',
   location: 'Delhi',
-  price: '₹808 - ₹7228',
+  price: getRandomPrice(),
   description: 'Live - Delhi happening live in Delhi',
   image: 'https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -726,7 +730,7 @@ const eventsList = [
   date: '2025-10-27',
   time: '10:00 AM',
   location: 'Jaipur',
-  price: '₹752 - ₹10757',
+  price: getRandomPrice(),
   description: 'Extravaganza - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -743,7 +747,7 @@ const eventsList = [
   date: '2025-09-06',
   time: '4:00 PM',
   location: 'Hyderabad',
-  price: '₹1604 - ₹8041',
+  price: getRandomPrice(),
   description: 'Festival - Hyderabad happening live in Hyderabad',
   image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -760,7 +764,7 @@ const eventsList = [
   date: '2025-07-14',
   time: '8:00 PM',
   location: 'Ahmedabad',
-  price: '₹1031 - ₹12985',
+  price: getRandomPrice(),
   description: 'Tour - Ahmedabad happening live in Ahmedabad',
   image: 'https://images.unsplash.com/photo-1560523159-6b681a1e1852?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -777,7 +781,7 @@ const eventsList = [
   date: '2026-03-07',
   time: '4:00 PM',
   location: 'Mumbai',
-  price: '₹671 - ₹5972',
+  price: getRandomPrice(),
   description: 'Tour - Mumbai happening live in Mumbai',
   image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -794,7 +798,7 @@ const eventsList = [
   date: '2025-05-24',
   time: '8:00 PM',
   location: 'Hyderabad',
-  price: '₹674 - ₹4448',
+  price: getRandomPrice(),
   description: 'Live - Hyderabad happening live in Hyderabad',
   image: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -811,7 +815,7 @@ const eventsList = [
   date: '2025-07-26',
   time: '10:00 AM',
   location: 'Jaipur',
-  price: '₹1886 - ₹14948',
+  price: getRandomPrice(),
   description: 'Festival - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -828,7 +832,7 @@ const eventsList = [
   date: '2026-01-24',
   time: '12:00 PM',
   location: 'Delhi',
-  price: '₹1823 - ₹3835',
+  price: getRandomPrice(),
   description: 'Madness - Delhi happening live in Delhi',
   image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -845,7 +849,7 @@ const eventsList = [
   date: '2026-01-17',
   time: '7:00 PM',
   location: 'Bengaluru',
-  price: '₹1056 - ₹3083',
+  price: getRandomPrice(),
   description: 'Experience - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -862,7 +866,7 @@ const eventsList = [
   date: '2026-04-02',
   time: '10:00 AM',
   location: 'Kolkata',
-  price: '₹398 - ₹12555',
+  price: getRandomPrice(),
   description: 'Madness - Kolkata happening live in Kolkata',
   image: 'https://images.unsplash.com/photo-1550305080-4e029753abcf?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -879,7 +883,7 @@ const eventsList = [
   date: '2026-01-09',
   time: '7:00 PM',
   location: 'Jaipur',
-  price: '₹372 - ₹4424',
+  price: getRandomPrice(),
   description: 'Extravaganza - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -896,7 +900,7 @@ const eventsList = [
   date: '2025-04-29',
   time: '10:00 AM',
   location: 'Goa',
-  price: '₹1568 - ₹9997',
+  price: getRandomPrice(),
   description: 'Tour - Goa happening live in Goa',
   image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -913,7 +917,7 @@ const eventsList = [
   date: '2026-01-17',
   time: '6:00 PM',
   location: 'Chennai',
-  price: '₹1242 - ₹13124',
+  price: getRandomPrice(),
   description: 'Extravaganza - Chennai happening live in Chennai',
   image: 'https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -930,7 +934,7 @@ const eventsList = [
   date: '2025-10-07',
   time: '10:00 AM',
   location: 'Ahmedabad',
-  price: '₹1326 - ₹10763',
+  price: getRandomPrice(),
   description: 'Festival - Ahmedabad happening live in Ahmedabad',
   image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -947,7 +951,7 @@ const eventsList = [
   date: '2025-12-14',
   time: '7:00 PM',
   location: 'Mumbai',
-  price: '₹1694 - ₹11062',
+  price: getRandomPrice(),
   description: 'Extravaganza - Mumbai happening live in Mumbai',
   image: 'https://images.unsplash.com/photo-1499364615650-ec38552f4f34?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -964,7 +968,7 @@ const eventsList = [
   date: '2026-01-08',
   time: '8:00 PM',
   location: 'Jaipur',
-  price: '₹807 - ₹13585',
+  price: getRandomPrice(),
   description: 'Tour - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1603190287605-e6ade32fa852?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -981,7 +985,7 @@ const eventsList = [
   date: '2025-12-05',
   time: '7:00 PM',
   location: 'Jaipur',
-  price: '₹999 - ₹8753',
+  price: getRandomPrice(),
   description: 'Tour - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -998,7 +1002,7 @@ const eventsList = [
   date: '2025-05-03',
   time: '10:00 AM',
   location: 'Ahmedabad',
-  price: '₹555 - ₹4828',
+  price: getRandomPrice(),
   description: 'Experience - Ahmedabad happening live in Ahmedabad',
   image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1015,7 +1019,7 @@ const eventsList = [
   date: '2025-08-19',
   time: '12:00 PM',
   location: 'Pune',
-  price: '₹1329 - ₹12658',
+  price: getRandomPrice(),
   description: 'Festival - Pune happening live in Pune',
   image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1032,7 +1036,7 @@ const eventsList = [
   date: '2025-08-18',
   time: '4:00 PM',
   location: 'Ahmedabad',
-  price: '₹1185 - ₹5014',
+  price: getRandomPrice(),
   description: 'Extravaganza - Ahmedabad happening live in Ahmedabad',
   image: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1049,7 +1053,7 @@ const eventsList = [
   date: '2025-06-02',
   time: '10:00 AM',
   location: 'Hyderabad',
-  price: '₹1263 - ₹5908',
+  price: getRandomPrice(),
   description: 'Tour - Hyderabad happening live in Hyderabad',
   image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1068,7 +1072,7 @@ const eventsList = [
   date: '2026-04-19',
   time: '4:00 PM',
   location: 'Jaipur',
-  price: '₹757 - ₹10633',
+  price: getRandomPrice(),
   description: 'Live - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1085,7 +1089,7 @@ const eventsList = [
   date: '2026-04-02',
   time: '6:00 PM',
   location: 'Chennai',
-  price: '₹941 - ₹3001',
+  price: getRandomPrice(),
   description: 'Festival - Chennai happening live in Chennai',
   image: 'https://images.unsplash.com/photo-1499364615650-ec38552f4f34?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1102,7 +1106,7 @@ const eventsList = [
   date: '2025-11-29',
   time: '12:00 PM',
   location: 'Jaipur',
-  price: '₹431 - ₹12509',
+  price: getRandomPrice(),
   description: 'Tour - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1119,7 +1123,7 @@ const eventsList = [
   date: '2026-03-16',
   time: '4:00 PM',
   location: 'Bengaluru',
-  price: '₹994 - ₹6307',
+  price: getRandomPrice(),
   description: 'Experience - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1136,7 +1140,7 @@ const eventsList = [
   date: '2025-08-18',
   time: '4:00 PM',
   location: 'Kolkata',
-  price: '₹820 - ₹3011',
+  price: getRandomPrice(),
   description: 'Madness - Kolkata happening live in Kolkata',
   image: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1153,7 +1157,7 @@ const eventsList = [
   date: '2025-09-15',
   time: '10:00 AM',
   location: 'Jaipur',
-  price: '₹1302 - ₹13371',
+  price: getRandomPrice(),
   description: 'Festival - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1170,7 +1174,7 @@ const eventsList = [
   date: '2026-03-09',
   time: '7:00 PM',
   location: 'Ahmedabad',
-  price: '₹436 - ₹7130',
+  price: getRandomPrice(),
   description: 'Tour - Ahmedabad happening live in Ahmedabad',
   image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1187,7 +1191,7 @@ const eventsList = [
   date: '2025-07-19',
   time: '6:00 PM',
   location: 'Kolkata',
-  price: '₹1883 - ₹7315',
+  price: getRandomPrice(),
   description: 'Madness - Kolkata happening live in Kolkata',
   image: 'https://images.unsplash.com/photo-1504680177321-2e6a879aac86?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1204,7 +1208,7 @@ const eventsList = [
   date: '2025-08-08',
   time: '8:00 PM',
   location: 'Pune',
-  price: '₹1156 - ₹11823',
+  price: getRandomPrice(),
   description: 'Experience - Pune happening live in Pune',
   image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1221,7 +1225,7 @@ const eventsList = [
   date: '2026-04-15',
   time: '7:00 PM',
   location: 'Bengaluru',
-  price: '₹1790 - ₹10485',
+  price: getRandomPrice(),
   description: 'Experience - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1238,7 +1242,7 @@ const eventsList = [
   date: '2026-01-19',
   time: '10:00 AM',
   location: 'Kolkata',
-  price: '₹555 - ₹7688',
+  price: getRandomPrice(),
   description: 'Tour - Kolkata happening live in Kolkata',
   image: 'https://images.unsplash.com/photo-1527224538127-2104bb71c51b?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1255,7 +1259,7 @@ const eventsList = [
   date: '2025-05-23',
   time: '6:00 PM',
   location: 'Kolkata',
-  price: '₹1329 - ₹14759',
+  price: getRandomPrice(),
   description: 'Tour - Kolkata happening live in Kolkata',
   image: 'https://images.unsplash.com/photo-1560523159-6b681a1e1852?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1272,7 +1276,7 @@ const eventsList = [
   date: '2025-08-09',
   time: '8:00 PM',
   location: 'Bengaluru',
-  price: '₹1122 - ₹5199',
+  price: getRandomPrice(),
   description: 'Clash - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1289,7 +1293,7 @@ const eventsList = [
   date: '2026-01-13',
   time: '7:00 PM',
   location: 'Bengaluru',
-  price: '₹2000 - ₹7002',
+  price: getRandomPrice(),
   description: 'Extravaganza - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1306,7 +1310,7 @@ const eventsList = [
   date: '2025-06-22',
   time: '10:00 AM',
   location: 'Hyderabad',
-  price: '₹563 - ₹11515',
+  price: getRandomPrice(),
   description: 'Clash - Hyderabad happening live in Hyderabad',
   image: 'https://images.unsplash.com/photo-1593642532454-e138e28a63f4?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1324,7 +1328,7 @@ const eventsList = [
   date: '2025-12-18',
   time: '4:00 PM',
   location: 'Goa',
-  price: '₹738 - ₹6724',
+  price: getRandomPrice(),
   description: 'Madness - Goa happening live in Goa',
   image: 'https://images.unsplash.com/photo-1527224538127-2104bb71c51b?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1341,7 +1345,7 @@ const eventsList = [
   date: '2025-09-14',
   time: '4:00 PM',
   location: 'Chennai',
-  price: '₹1626 - ₹3178',
+  price: getRandomPrice(),
   description: 'Clash - Chennai happening live in Chennai',
   image: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1358,7 +1362,7 @@ const eventsList = [
   date: '2025-09-28',
   time: '10:00 AM',
   location: 'Hyderabad',
-  price: '₹916 - ₹9587',
+  price: getRandomPrice(),
   description: 'Live - Hyderabad happening live in Hyderabad',
   image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1375,7 +1379,7 @@ const eventsList = [
   date: '2025-11-18',
   time: '7:00 PM',
   location: 'Jaipur',
-  price: '₹1896 - ₹12143',
+  price: getRandomPrice(),
   description: 'Clash - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1392,7 +1396,7 @@ const eventsList = [
   date: '2025-10-29',
   time: '8:00 PM',
   location: 'Bengaluru',
-  price: '₹1722 - ₹14618',
+  price: getRandomPrice(),
   description: 'Extravaganza - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1409,7 +1413,7 @@ const eventsList = [
   date: '2026-01-28',
   time: '12:00 PM',
   location: 'Goa',
-  price: '₹1433 - ₹9058',
+  price: getRandomPrice(),
   description: 'Festival - Goa happening live in Goa',
   image: 'https://images.unsplash.com/photo-1560523159-6b681a1e1852?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1426,7 +1430,7 @@ const eventsList = [
   date: '2025-08-14',
   time: '12:00 PM',
   location: 'Jaipur',
-  price: '₹795 - ₹9265',
+  price: getRandomPrice(),
   description: 'Tour - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1443,7 +1447,7 @@ const eventsList = [
   date: '2025-06-19',
   time: '10:00 AM',
   location: 'Delhi',
-  price: '₹1073 - ₹3085',
+  price: getRandomPrice(),
   description: 'Festival - Delhi happening live in Delhi',
   image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1460,7 +1464,7 @@ const eventsList = [
   date: '2026-03-25',
   time: '10:00 AM',
   location: 'Chennai',
-  price: '₹973 - ₹10246',
+  price: getRandomPrice(),
   description: 'Tour - Chennai happening live in Chennai',
   image: 'https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1477,7 +1481,7 @@ const eventsList = [
   date: '2025-06-19',
   time: '7:00 PM',
   location: 'Bengaluru',
-  price: '₹1915 - ₹3583',
+  price: getRandomPrice(),
   description: 'Live - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1494,7 +1498,7 @@ const eventsList = [
   date: '2025-10-02',
   time: '10:00 AM',
   location: 'Goa',
-  price: '₹825 - ₹12860',
+  price: getRandomPrice(),
   description: 'Experience - Goa happening live in Goa',
   image: 'https://images.unsplash.com/photo-1593642532454-e138e28a63f4?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1511,7 +1515,7 @@ const eventsList = [
   date: '2025-07-03',
   time: '7:00 PM',
   location: 'Bengaluru',
-  price: '₹986 - ₹14869',
+  price: getRandomPrice(),
   description: 'Madness - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1528,7 +1532,7 @@ const eventsList = [
   date: '2026-02-25',
   time: '12:00 PM',
   location: 'Goa',
-  price: '₹1299 - ₹3181',
+  price: getRandomPrice(),
   description: 'Live - Goa happening live in Goa',
   image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1545,7 +1549,7 @@ const eventsList = [
   date: '2025-06-05',
   time: '8:00 PM',
   location: 'Delhi',
-  price: '₹1311 - ₹7317',
+  price: getRandomPrice(),
   description: 'Tour - Delhi happening live in Delhi',
   image: 'https://images.unsplash.com/photo-1504680177321-2e6a879aac86?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1562,7 +1566,7 @@ const eventsList = [
   date: '2025-04-24',
   time: '12:00 PM',
   location: 'Jaipur',
-  price: '₹335 - ₹3804',
+  price: getRandomPrice(),
   description: 'Live - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1564585222527-c2777a5bc6cb?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1579,7 +1583,7 @@ const eventsList = [
   date: '2025-07-13',
   time: '10:00 AM',
   location: 'Delhi',
-  price: '₹1372 - ₹10945',
+  price: getRandomPrice(),
   description: 'Experience - Delhi happening live in Delhi',
   image: 'https://images.unsplash.com/photo-1499364615650-ec38552f4f34?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1596,7 +1600,7 @@ const eventsList = [
   date: '2025-05-13',
   time: '12:00 PM',
   location: 'Pune',
-  price: '₹1962 - ₹7568',
+  price: getRandomPrice(),
   description: 'Live - Pune happening live in Pune',
   image: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1613,7 +1617,7 @@ const eventsList = [
   date: '2025-05-27',
   time: '7:00 PM',
   location: 'Pune',
-  price: '₹1609 - ₹3284',
+  price: getRandomPrice(),
   description: 'Madness - Pune happening live in Pune',
   image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1630,7 +1634,7 @@ const eventsList = [
   date: '2025-05-18',
   time: '7:00 PM',
   location: 'Goa',
-  price: '₹918 - ₹6932',
+  price: getRandomPrice(),
   description: 'Tour - Goa happening live in Goa',
   image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1647,7 +1651,7 @@ const eventsList = [
   date: '2025-05-01',
   time: '6:00 PM',
   location: 'Delhi',
-  price: '₹746 - ₹12002',
+  price: getRandomPrice(),
   description: 'Experience - Delhi happening live in Delhi',
   image: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1664,7 +1668,7 @@ const eventsList = [
   date: '2025-11-18',
   time: '12:00 PM',
   location: 'Pune',
-  price: '₹1439 - ₹7397',
+  price: getRandomPrice(),
   description: 'Extravaganza - Pune happening live in Pune',
   image: 'https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1681,7 +1685,7 @@ const eventsList = [
   date: '2025-09-14',
   time: '7:00 PM',
   location: 'Chennai',
-  price: '₹1751 - ₹4804',
+  price: getRandomPrice(),
   description: 'Experience - Chennai happening live in Chennai',
   image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1698,7 +1702,7 @@ const eventsList = [
   date: '2026-02-17',
   time: '4:00 PM',
   location: 'Goa',
-  price: '₹1628 - ₹4377',
+  price: getRandomPrice(),
   description: 'Tour - Goa happening live in Goa',
   image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1715,7 +1719,7 @@ const eventsList = [
   date: '2025-09-09',
   time: '10:00 AM',
   location: 'Ahmedabad',
-  price: '₹1488 - ₹13221',
+  price: getRandomPrice(),
   description: 'Tour - Ahmedabad happening live in Ahmedabad',
   image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1732,7 +1736,7 @@ const eventsList = [
   date: '2025-07-20',
   time: '4:00 PM',
   location: 'Ahmedabad',
-  price: '₹1292 - ₹12947',
+  price: getRandomPrice(),
   description: 'Clash - Ahmedabad happening live in Ahmedabad',
   image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1749,7 +1753,7 @@ const eventsList = [
   date: '2026-02-01',
   time: '4:00 PM',
   location: 'Bengaluru',
-  price: '₹1093 - ₹5515',
+  price: getRandomPrice(),
   description: 'Live - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1766,7 +1770,7 @@ const eventsList = [
   date: '2025-05-28',
   time: '8:00 PM',
   location: 'Ahmedabad',
-  price: '₹588 - ₹9057',
+  price: getRandomPrice(),
   description: 'Experience - Ahmedabad happening live in Ahmedabad',
   image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1783,7 +1787,7 @@ const eventsList = [
   date: '2026-03-21',
   time: '4:00 PM',
   location: 'Goa',
-  price: '₹1375 - ₹5960',
+  price: getRandomPrice(),
   description: 'Madness - Goa happening live in Goa',
   image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1800,7 +1804,7 @@ const eventsList = [
   date: '2025-05-25',
   time: '10:00 AM',
   location: 'Chennai',
-  price: '₹1739 - ₹6783',
+  price: getRandomPrice(),
   description: 'Madness - Chennai happening live in Chennai',
   image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1817,7 +1821,7 @@ const eventsList = [
   date: '2025-05-07',
   time: '4:00 PM',
   location: 'Jaipur',
-  price: '₹508 - ₹14178',
+  price: getRandomPrice(),
   description: 'Clash - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1834,7 +1838,7 @@ const eventsList = [
   date: '2025-12-21',
   time: '7:00 PM',
   location: 'Ahmedabad',
-  price: '₹554 - ₹14552',
+  price: getRandomPrice(),
   description: 'Live - Ahmedabad happening live in Ahmedabad',
   image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1851,7 +1855,7 @@ const eventsList = [
   date: '2025-05-27',
   time: '8:00 PM',
   location: 'Jaipur',
-  price: '₹1861 - ₹7629',
+  price: getRandomPrice(),
   description: 'Clash - Jaipur happening live in Jaipur',
   image: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=800&q=80',
   tags: [
@@ -1869,7 +1873,7 @@ const eventsList = [
   date: '2025-08-14',
   time: '8:00 PM',
   location: 'Mumbai',
-  price: '₹1250 - ₹8500',
+  price: getRandomPrice(),
   description: 'Experience the best of Indian hip-hop with Divine live in Mumbai',
   image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80',
   tags: [

@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col">
-      <header className="w-full py-6 px-4 md:px-8 flex justify-between items-center bg-black/30 backdrop-blur-sm">
+      {/* <header className="w-full py-6 px-4 md:px-8 flex justify-between items-center bg-black/30 backdrop-blur-sm">
         <h1 className="text-3xl font-bold text-pink-500">SnapTix</h1>
         <nav className="space-x-6">
           <Link
@@ -47,7 +47,7 @@ export default function Home() {
             AI Assistant
           </Link>
         </nav>
-      </header>
+      </header> */}
 
       <section className="text-center mt-16 px-4 max-w-5xl mx-auto">
         <h2 className="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
