@@ -1,4 +1,4 @@
-const Fluvio = require('@fluvio/client').default;
+// const Fluvio = require('@fluvio/client').default;
 const { eventCache } = require('./eventCache');
 const { eventsList } = require('./eventData');
 
@@ -6,6 +6,16 @@ async function startFluvioConsumer() {
   // For development, you can set this environment variable to skip Fluvio entirely
   if (process.env.USE_MOCK_DATA === 'true') {
     console.log('🔄 Using mock event data (configured via environment)');
+    eventsList.forEach(event => eventCache.push(event));
+    console.log(`➕ Added ${eventsList.length} mock events to cache`);
+    return null;
+  }
+
+  let Fluvio;
+  try {
+    Fluvio = require('@fluvio/client').default;
+  } catch (e) {
+    console.warn("⚠️ Fluvio client not found or not supported on this platform, switching to mock mode.");
     eventsList.forEach(event => eventCache.push(event));
     console.log(`➕ Added ${eventsList.length} mock events to cache`);
     return null;
