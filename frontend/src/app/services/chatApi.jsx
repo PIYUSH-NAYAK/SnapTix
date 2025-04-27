@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+// Change this line to use your deployed API URL
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://snaptix.onrender.com/api'  // Production backend URL
+  : 'http://localhost:5000/api';        // Development backend URL
 
 export const fetchAllEvents = async () => {
   try {
