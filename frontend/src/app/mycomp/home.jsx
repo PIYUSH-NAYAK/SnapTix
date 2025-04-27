@@ -13,10 +13,10 @@ const AnimatedParticles = dynamic(
 );
 
 // Import the decorative borders component
-const DecorativeBorders = dynamic(
-  () => import('../components/DecorativeBorders'),
-  { ssr: false }
-);
+// const DecorativeBorders = dynamic(
+//   () => import('../components/DecorativeBorders'),
+//   { ssr: false }
+// );
 
 import HeroSection from "./home/HeroSection";
 import FeaturedEvents from "./home/FeaturedEvents";
@@ -168,7 +168,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white flex flex-col relative overflow-hidden">
       {/* Add the decorative borders component */}
-      <DecorativeBorders />
+      {/* <DecorativeBorders /> */}
       
       {/* Animated particles background with higher z-index */}
       <div className="fixed inset-0 z-0 opacity-40 pointer-events-none">
