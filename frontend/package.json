@@ -22,6 +22,7 @@
     "react-hot-toast": "^2.5.2",
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
+    "react-qr-code": "^2.0.15",
     "viem": "^2.27.2",
     "wagmi": "^2.14.16"
   },
