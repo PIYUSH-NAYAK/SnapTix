@@ -59,7 +59,7 @@ export default function ForgotPassword() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center px-4">
+    <main className="pt-[calc(3rem+1px)] min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center px-4">
       <div className="max-w-md w-full bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 shadow-xl">
         <div className="text-center mb-8">
           <Link href="/" className="text-3xl font-bold text-pink-500 hover:text-pink-400 transition">
