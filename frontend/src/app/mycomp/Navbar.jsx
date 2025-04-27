@@ -13,9 +13,13 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // We'll initialize this state only on the client side to avoid hydration mismatch
+  const [isMounted, setIsMounted] = useState(false);
 
   // Handle scroll effect for navbar
   useEffect(() => {
+    setIsMounted(true); // Mark component as mounted on client
+    
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -55,12 +59,15 @@ export default function Navbar() {
     { path: "/my-tickets", label: "My Tickets" },
   ];
 
-  return (
-    <header 
-      className={`fixed w-full bg-transparent z-50 transition-all duration-300   ${
+  // Only calculate classes on the client side after mounting
+  const headerClasses = isMounted
+    ? `fixed w-full h-6 py-1 bg-transparent z-50 transition-all duration-300 ${
         scrolled ? " backdrop-blur-sm py-3 shadow-lg" : "bg-transparent "
-      }`}
-    >
+      }`
+    : "fixed w-full h-6 py-1 bg-transparent z-50"; // Default class for server-side rendering
+
+  return (
+    <header className={headerClasses}>
       <div className="max-w-[90vw] text-lg mx-auto px-4 flex items-center justify-between pt-4 ">
         {/* Logo */}
         <Link href="/">

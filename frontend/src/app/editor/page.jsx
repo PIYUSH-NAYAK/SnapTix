@@ -46,7 +46,7 @@ export default function ChatPage() {
 
   return (
     <main
-      className="pt-[calc(3rem+1px)] min-h-screen bg-black text-white flex flex-col items-center justify-center p-4 bg-cover bg-center relative overflow-hidden"
+      className="pt-[calc(3rem+1px)] min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex flex-col items-center justify-center p-4 bg-cover bg-center relative overflow-hidden"
       style={{
         backgroundImage:
           "url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWI5azRhZWZ6MHZ2bDJvcGljdDZlN2JqZm5za2lldGZvMWZ5Z2F4eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1pAht1Y4VovRFvvjXi/giphy.gif)",
