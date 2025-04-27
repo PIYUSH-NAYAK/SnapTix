@@ -201,14 +201,14 @@ export default function EventDetailsPage() {
 
       alert(`Success! Ticket purchased for ₹${priceInINR} (${priceInEth} ETH). Transaction hash: ${hash}`);
 
-      try {
-        // Try to navigate to user tickets page
-        router.push("/my-tickets");
-      } catch (navError) {
-        console.error("Error navigating after purchase:", navError);
-        // Provide fallback option if navigation fails
-        alert("Your ticket has been purchased. Please navigate to 'My Tickets' to view it.");
-      }
+      // try {
+      //   // Try to navigate to user tickets page
+      //   router.push("/my-tickets");
+      // } catch (navError) {
+      //   console.error("Error navigating after purchase:", navError);
+      //   // Provide fallback option if navigation fails
+      //   alert("Your ticket has been purchased. Please navigate to 'My Tickets' to view it.");
+      // }
     } catch (err) {
       console.error("Error buying ticket:", err);
       // Provide more specific error messages based on common issues
