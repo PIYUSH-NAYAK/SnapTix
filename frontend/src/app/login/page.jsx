@@ -1,55 +1,115 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { login, signInWithGoogle } = useAuth();
+  const { login, signInWithGoogle, user } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      router.push('/');
+    }
+  }, [user, router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);
     
-    try {
-      await login(email, password);
-      router.push("/");
-    } catch (err) {
-      setError("Failed to log in: " + err.message);
-    } finally {
-      setLoading(false);
-    }
+    const loginPromise = login(email, password)
+      .then(() => {
+        router.push("/");
+      })
+      .catch((err) => {
+        setError("Failed to log in: " + err.message);
+        throw new Error(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    
+    toast.promise(loginPromise, {
+      loading: 'Logging in...',
+      success: 'Welcome back!',
+      error: (err) => `Login failed: ${err.message}`
+    });
   };
 
   const handleGoogleSignIn = async () => {
     setError("");
     setLoading(true);
     
-    try {
-      await signInWithGoogle();
-      router.push("/");
-    } catch (err) {
-      setError("Failed to sign in with Google: " + err.message);
-    } finally {
-      setLoading(false);
-    }
+    const googlePromise = signInWithGoogle()
+      .then(() => {
+        router.push("/");
+      })
+      .catch((err) => {
+        setError("Failed to sign in with Google: " + err.message);
+        throw new Error(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+      
+    toast.promise(googlePromise, {
+      loading: 'Connecting with Google...',
+      success: 'Welcome back!',
+      error: (err) => `Google sign-in failed: ${err.message}`
+    });
+  };
+
+  const handleNavigateToSignup = () => {
+    toast.loading('Loading signup page...', { 
+      duration: 1000,
+      style: {
+        background: '#1f2937',
+        color: '#fff',
+        border: '1px solid rgba(236, 72, 153, 0.3)'
+      }
+    });
   };
 
   return (
-    <main className="pt-[calc(3rem+1px)] min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center p-4">
-      <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl max-w-md w-full">
-        <h1 className="text-3xl font-bold mb-6 text-center text-pink-500">Login to SnapTix</h1>
+    <motion.main 
+      className="pt-[calc(3rem+1px)] min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <motion.div 
+        className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl max-w-md w-full"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        <motion.h1 
+          className="text-3xl font-bold mb-6 text-center text-pink-500"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Login to SnapTix
+        </motion.h1>
         
         {error && (
-          <div className="bg-red-500/20 border border-red-500 text-white p-3 rounded-lg mb-4">
+          <motion.div 
+            className="bg-red-500/20 border border-red-500 text-white p-3 rounded-lg mb-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+          >
             {error}
-          </div>
+          </motion.div>
         )}
         
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -120,7 +180,11 @@ export default function Login() {
         
         <div className="mt-6 text-center text-sm">
           Don't have an account?{" "}
-          <Link href="/signup" className="text-pink-400 hover:text-pink-300">
+          <Link 
+            href="/signup" 
+            className="text-pink-400 hover:text-pink-300"
+            onClick={handleNavigateToSignup}
+          >
             Sign Up
           </Link>
         </div>
@@ -130,7 +194,7 @@ export default function Login() {
             Forgot password?
           </Link>
         </div>
-      </div>
-    </main>
+      </motion.div>
+    </motion.main>
   );
 }

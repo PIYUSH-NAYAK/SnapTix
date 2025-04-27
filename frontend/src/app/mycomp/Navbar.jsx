@@ -99,14 +99,29 @@ export default function Navbar() {
           
           <Link
             href="/ai-assistant"
-            className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 px-4 py-2 rounded-lg text-white transition-all duration-300 font-medium shadow-md hover:shadow-pink-500/20"
+            className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 px-4 py-2 rounded-lg text-white shadow-md hover:shadow-pink-500/30 transition-all duration-300"
           >
             AI Assistant
           </Link>
 
           {/* Authentication */}
-          {user ? (
-            <div className="relative profile-menu">
+          {!user ? (
+            <div className="flex items-center space-x-4">
+              <Link
+                href="/login"
+                className="text-gray-300 hover:text-white transition-colors duration-300"
+              >
+                Log In
+              </Link>
+              <Link
+                href="/signup"
+                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 px-4 py-2 rounded-lg text-white shadow-md hover:shadow-pink-500/30 transition-all duration-300"
+              >
+                Sign Up
+              </Link>
+            </div>
+          ) : (
+            <div className="relative flex items-center">
               <button
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
                 className="flex items-center focus:outline-none"
@@ -195,21 +210,6 @@ export default function Navbar() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
-          ) : (
-            <div className="flex items-center space-x-4">
-              <Link
-                href="/login"
-                className="text-gray-300 hover:text-white transition-colors duration-300"
-              >
-                Log In
-              </Link>
-              <Link
-                href="/signup"
-                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 px-4 py-2 rounded-lg text-white transition-all duration-300 font-medium shadow-md hover:shadow-pink-500/20"
-              >
-                Sign Up
-              </Link>
             </div>
           )}
         </nav>

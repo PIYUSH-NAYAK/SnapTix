@@ -1,8 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -10,51 +12,108 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signup, signInWithGoogle } = useAuth();
+  const { signup, signInWithGoogle, user } = useAuth();
   const router = useRouter();
+  
+  useEffect(() => {
+    if (user) {
+      router.push('/');
+    }
+  }, [user, router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     
     if (password !== confirmPassword) {
-      return setError("Passwords do not match");
+      setError("Passwords do not match");
+      toast.error("Passwords do not match");
+      return;
     }
     
     if (password.length < 6) {
-      return setError("Password must be at least 6 characters");
+      setError("Password must be at least 6 characters");
+      toast.error("Password must be at least 6 characters");
+      return;
     }
     
     setLoading(true);
     
-    try {
-      await signup(email, password);
-      router.push("/");
-    } catch (err) {
-      setError("Failed to create an account: " + err.message);
-    } finally {
-      setLoading(false);
-    }
+    const signupPromise = signup(email, password)
+      .then(() => {
+        router.push("/");
+      })
+      .catch((err) => {
+        setError("Failed to create an account: " + err.message);
+        throw new Error(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    
+    toast.promise(signupPromise, {
+      loading: 'Creating account...',
+      success: 'Account created successfully!',
+      error: (err) => `Signup failed: ${err.message}`
+    });
   };
 
   const handleGoogleSignIn = async () => {
     setError("");
     setLoading(true);
     
-    try {
-      await signInWithGoogle();
-      router.push("/");
-    } catch (err) {
-      setError("Failed to sign in with Google: " + err.message);
-    } finally {
-      setLoading(false);
-    }
+    const googlePromise = signInWithGoogle()
+      .then(() => {
+        router.push("/");
+      })
+      .catch((err) => {
+        setError("Failed to sign in with Google: " + err.message);
+        throw new Error(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    
+    toast.promise(googlePromise, {
+      loading: 'Connecting with Google...',
+      success: 'Account connected successfully!',
+      error: (err) => `Google sign-in failed: ${err.message}`
+    });
+  };
+
+  const handleNavigateToLogin = () => {
+    toast.loading('Loading login page...', { 
+      duration: 1000,
+      style: {
+        background: '#1f2937',
+        color: '#fff',
+        border: '1px solid rgba(236, 72, 153, 0.3)'
+      }
+    });
   };
 
   return (
-    <main className="pt-[calc(3rem+1px)] min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center p-4">
-      <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl max-w-md w-full">
-        <h1 className="text-3xl font-bold mb-6 text-center text-pink-500">Sign Up for SnapTix</h1>
+    <motion.main 
+      className="pt-[calc(3rem+1px)] min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <motion.div 
+        className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl max-w-md w-full"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        <motion.h1 
+          className="text-3xl font-bold mb-6 text-center text-pink-500"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Sign Up for SnapTix
+        </motion.h1>
         
         {error && (
           <div className="bg-red-500/20 border border-red-500 text-white p-3 rounded-lg mb-4">
@@ -144,11 +203,15 @@ export default function Signup() {
         
         <div className="mt-6 text-center text-sm">
           Already have an account?{" "}
-          <Link href="/login" className="text-pink-400 hover:text-pink-300">
+          <Link 
+            href="/login" 
+            className="text-pink-400 hover:text-pink-300"
+            onClick={handleNavigateToLogin}
+          >
             Log In
           </Link>
         </div>
-      </div>
-    </main>
+      </motion.div>
+    </motion.main>
   );
 }

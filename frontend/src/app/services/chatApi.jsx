@@ -1,10 +1,29 @@
 import axios from 'axios';
+import { auth } from "../../config/firebase";
 
-// Change this line to use your deployed API URL
+// API URL based on environment
 const API_URL = process.env.NODE_ENV === 'production' 
   ? 'https://snaptix.onrender.com/api'  // Production backend URL
   : 'http://localhost:5000/api';        // Development backend URL
 
+// Configure axios with authentication
+const getAuthenticatedAxios = async () => {
+  const currentUser = auth.currentUser;
+  let token = null;
+  
+  if (currentUser) {
+    token = await currentUser.getIdToken();
+  }
+  
+  return axios.create({
+    baseURL: API_URL,
+    headers: token ? { 
+      'Authorization': `Bearer ${token}` 
+    } : {}
+  });
+};
+
+// Public endpoints (no auth required)
 export const fetchAllEvents = async () => {
   try {
     const response = await axios.get(`${API_URL}/events`);
@@ -58,10 +77,15 @@ export const askAI = async (query) => {
     };
   }
 };
-// Add this function to your existing chatApi.js file
+
+
+
+
+
+// Update fetch-based function to use the API_URL variable for consistency
 export async function fetchEventById(eventId) {
   try {
-    const response = await fetch(`http://localhost:5000/api/events/${eventId}`);
+    const response = await fetch(`${API_URL}/events/${eventId}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -72,7 +96,6 @@ export async function fetchEventById(eventId) {
     };
   }
 }
-// Add this new function to your existing file
 
 export const getSuggestedEvents = async (eventId) => {
   try {
@@ -83,5 +106,48 @@ export const getSuggestedEvents = async (eventId) => {
   } catch (error) {
     console.error('Error fetching suggested events:', error);
     return { success: false, data: [] };
+  }
+};
+
+// Protected endpoints (require authentication)
+export const getUserTickets = async () => {
+  try {
+    const axiosAuth = await getAuthenticatedAxios();
+    const response = await axiosAuth.get('/tickets');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching user tickets:', error);
+    return { success: false, data: [] };
+  }
+};
+
+export const purchaseTicket = async (ticketData) => {
+  try {
+    const axiosAuth = await getAuthenticatedAxios();
+    const response = await axiosAuth.post('/tickets/purchase', ticketData);
+    return response.data;
+  } catch (error) {
+    console.error('Error purchasing ticket:', error);
+    return { 
+      success: false, 
+      message: error.response?.data?.message || 'Failed to purchase ticket' 
+    };
+  }
+};
+
+export const transferTicket = async (ticketId, recipientEmail) => {
+  try {
+    const axiosAuth = await getAuthenticatedAxios();
+    const response = await axiosAuth.post('/tickets/transfer', { 
+      ticketId,
+      recipientEmail 
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error transferring ticket:', error);
+    return { 
+      success: false, 
+      message: error.response?.data?.message || 'Failed to transfer ticket' 
+    };
   }
 };
