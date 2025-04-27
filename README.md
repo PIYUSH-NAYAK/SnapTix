@@ -14,7 +14,7 @@ SnapTix is an innovative event discovery and ticketing platform that uses blockc
 ## 🔧 Tech Stack
 
 ### Frontend
-- Next.js 15 (React 19)
+- Next.js 15 
 - Firebase Authentication
 - Tailwind CSS
 - Ethers.js for Web3 integration
@@ -44,8 +44,8 @@ SnapTix is an innovative event discovery and ticketing platform that uses blockc
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/snaptix.git
-cd snaptix
+git clone https://github.com/PIYUSH-NAYAK/SnapTix.git
+cd SnapTix
 ```
 
 2. **Set up environment variables**
@@ -154,13 +154,6 @@ npx hardhat run scripts/deploy.js --network hardhat
    - Ensure all tests pass
    - Update documentation if needed
 
-## 🔗 API Endpoints
-
-### Backend API
-
-- `GET /api/health` - Health check endpoint
-- `POST /api/groq` - AI assistant endpoint
-- Various event-related endpoints (see backend documentation)
 
 ## 🧠 Smart Contract Architecture
 
