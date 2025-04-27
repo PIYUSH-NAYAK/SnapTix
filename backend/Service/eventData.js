@@ -6,7 +6,7 @@ const eventsList = [
   {
     id: '1',
     title: 'Coldplay Tour',
-    type: 'concert',
+    type: 'Concert',
     artist: 'Coldplay',
     genre: 'pop/rock',
     date: '2025-05-21',
@@ -21,7 +21,7 @@ const eventsList = [
   {
     id: '2',
     title: 'AR Rahman Live',
-    type: 'concert',
+    type: 'Concert',
     artist: 'AR Rahman',
     genre: 'indian classical/fusion',
     date: '2025-06-15',
@@ -35,7 +35,7 @@ const eventsList = [
   // {
   //   id: '3',
   //   title: 'IPL Final 2025',
-  //   type: 'sports',
+  //   type: 'sport',
   //   genre: 'cricket',
   //   date: '2025-05-30',
   //   time: '7:00 PM',
@@ -43,12 +43,12 @@ const eventsList = [
   //   price: '₹1,500 - ₹25,000',
   //   description: 'The grand finale of IPL 2025',
   //   image: 'https://images.app.goo.gl/J8o6yZvYMGe2uLoj8',
-  //   tags: ['sports', 'cricket', 'ipl']
+  //   tags: ['sport', 'cricket', 'ipl']
   // },
   // {
   //   id: '4',
   //   title: 'Diljit Dosanjh - Dil-Luminati Tour',
-  //   type: 'concert',
+  //   type: 'Concert',
   //   artist: 'Diljit Dosanjh',
   //   genre: 'punjabi/pop',
   //   date: '2025-07-10',
@@ -62,14 +62,14 @@ const eventsList = [
   // {
   //   id: '5',
   //   title: 'Arijit Singh Live in Concert',
-  //   type: 'concert',
+  //   type: 'Concert',
   //   artist: 'Arijit Singh',
   //   genre: 'bollywood',
   //   date: '2025-08-05',
   //   time: '7:00 PM',
   //   location: 'Mumbai',
   //   price: '₹2,000 - ₹10,000',
-  //   description: 'Experience the magic of Arijit Singh\'s soulful voice live in concert',
+  //   description: 'Experience the magic of Arijit Singh\'s soulful voice live in Concert',
   //   image: 'https://images.app.goo.gl/YpYQPYJPoa2WzcJF7',
   //   tags: ['music', 'bollywood', 'vocal']
   // },
@@ -77,7 +77,7 @@ const eventsList = [
 {
   id: '3',
   title: 'IPL Final 2025',
-  type: 'sports',
+  type: 'sport',
   genre: 'cricket',
   date: '2025-05-30',
   time: '7:00 PM',
@@ -85,7 +85,7 @@ const eventsList = [
   price: getRandomPrice(),
   description: 'The grand finale of IPL 2025',
   image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
-  tags: ['sports', 'cricket', 'ipl']
+  tags: ['sport', 'cricket', 'ipl']
 },
 // Add this event before the closing square bracket and module.exports
 {
@@ -128,7 +128,7 @@ const eventsList = [
 {
   id: '6',
   title: 'India vs Australia ',
-  type: 'sports',
+  type: 'sport',
   genre: 'cricket',
   date: '2025-09-12',
   time: '9:30 AM',
@@ -136,7 +136,7 @@ const eventsList = [
   price: getRandomPrice(),
   description: 'Day 1 of the first test match between India and Australia',
   image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=800&q=80',
-  tags: ['sports', 'cricket', 'international']
+  tags: ['sport', 'cricket', 'international']
 },
 {
   id: '7',
@@ -156,7 +156,7 @@ const eventsList = [
 {
   id: '8',
   title: 'Festival - Mumbai',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Coldplay',
   genre: 'punjabi',
   date: '2026-01-26',
@@ -173,7 +173,7 @@ const eventsList = [
 {
   id: '9',
   title: 'Festival - Delhi',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Virat Kohli',
   genre: 'punjabi',
   date: '2026-04-18',
@@ -192,7 +192,7 @@ const eventsList = [
 {
   id: '10',
   title: 'Experience - Kolkata',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Film Stars',
   genre: 'kabaddi',
   date: '2025-08-30',
@@ -226,7 +226,7 @@ const eventsList = [
 {
   id: '12',
   title: 'Live - Delhi',
-  type: 'sports',
+  type: 'sport',
   artist: 'Various Artists',
   genre: 'electronic',
   date: '2025-07-24',
@@ -328,14 +328,14 @@ const eventsList = [
 {
   id: '18',
   title: 'Arijit Singh Live',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Arijit Singh',
   genre: 'bollywood',
   date: '2025-08-05',
   time: '7:00 PM',
   location: 'Mumbai',
   price: getRandomPrice(),
-  description: 'Experience the magic of Arijit Singh\'s soulful voice live in concert',
+  description: 'Experience the magic of Arijit Singh\'s soulful voice live in Concert',
   image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
   tags: ['music', 'bollywood', 'vocal']
 },
@@ -343,7 +343,7 @@ const eventsList = [
 {
   id: '19',
   title: 'Live - Bengaluru',
-  type: 'sports',
+  type: 'sport',
   artist: 'Neha Kakkar',
   genre: 'bollywood',
   date: '2026-04-07',
@@ -353,7 +353,7 @@ const eventsList = [
   description: 'Live - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=800&q=80',
   tags: [
-    'sports',
+    'sport',
     'cricket'
   ]
 },
@@ -389,14 +389,14 @@ const eventsList = [
   description: 'Live - Pune happening live in Pune',
   image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80',
   tags: [
-    'sports',
+    'sport',
     'cricket'
   ]
 },
 {
   id: '22',
   title: 'Madness - Kolkata',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Virat Kohli',
   genre: 'punjabi',
   date: '2025-07-16',
@@ -481,7 +481,7 @@ const eventsList = [
 {
   id: '27',
   title: 'Experience - Bengaluru',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Rahul Subramanian',
   genre: 'kabaddi',
   date: '2026-04-13',
@@ -525,7 +525,7 @@ const eventsList = [
   description: 'Tour - Hyderabad happening live in Hyderabad',
   image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80',
   tags: [
-    'sports',
+    'sport',
     'cricket'
   ]
 },
@@ -566,7 +566,7 @@ const eventsList = [
 {
   id: '32',
   title: 'Festival - Kolkata',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Virat Kohli',
   genre: 'standup',
   date: '2026-04-15',
@@ -618,7 +618,7 @@ const eventsList = [
 {
   id: '35',
   title: 'Live - Goa',
-  type: 'concert',
+  type: 'Concert',
   artist: 'AP Dhillon',
   genre: 'kabaddi',
   date: '2025-08-28',
@@ -635,7 +635,7 @@ const eventsList = [
 {
   id: '36',
   title: 'Clash - Kolkata',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Coldplay',
   genre: 'cricket',
   date: '2025-06-03',
@@ -775,7 +775,7 @@ const eventsList = [
 {
   id: '44',
   title: 'Tour - Mumbai',
-  type: 'sports',
+  type: 'sport',
   artist: 'AP Dhillon',
   genre: 'classical',
   date: '2026-03-07',
@@ -792,7 +792,7 @@ const eventsList = [
 {
   id: '45',
   title: 'Live - Hyderabad',
-  type: 'sports',
+  type: 'sport',
   artist: 'Prateek Kuhad',
   genre: 'punjabi',
   date: '2025-05-24',
@@ -809,7 +809,7 @@ const eventsList = [
 {
   id: '46',
   title: 'Festival - Jaipur',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Film Stars',
   genre: 'bollywood',
   date: '2025-07-26',
@@ -826,7 +826,7 @@ const eventsList = [
 {
   id: '47',
   title: 'Madness - Delhi',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Rahul Subramanian',
   genre: 'bollywood',
   date: '2026-01-24',
@@ -836,7 +836,7 @@ const eventsList = [
   description: 'Madness - Delhi happening live in Delhi',
   image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80',
   tags: [
-    'sports',
+    'sport',
     'cricket'
   ]
 },
@@ -853,7 +853,7 @@ const eventsList = [
   description: 'Experience - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80',
   tags: [
-    'sports',
+    'sport',
     'cricket'
   ]
 },
@@ -870,7 +870,7 @@ const eventsList = [
   description: 'Madness - Kolkata happening live in Kolkata',
   image: 'https://images.unsplash.com/photo-1550305080-4e029753abcf?auto=format&fit=crop&w=800&q=80',
   tags: [
-    'sports',
+    'sport',
     'cricket'
   ]
 },
@@ -904,7 +904,7 @@ const eventsList = [
   description: 'Tour - Goa happening live in Goa',
   image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
   tags: [
-    'sports',
+    'sport',
     'cricket'
   ]
 },
@@ -928,7 +928,7 @@ const eventsList = [
 {
   id: '53',
   title: 'Festival - Ahmedabad',
-  type: 'concert',
+  type: 'Concert',
   artist: 'AP Dhillon',
   genre: 'classical',
   date: '2025-10-07',
@@ -945,7 +945,7 @@ const eventsList = [
 {
   id: '54',
   title: 'Extravaganza - Mumbai',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Prateek Kuhad',
   genre: 'cricket',
   date: '2025-12-14',
@@ -979,7 +979,7 @@ const eventsList = [
 {
   id: '56',
   title: 'Tour - Jaipur',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Arijit Singh',
   genre: 'kabaddi',
   date: '2025-12-05',
@@ -1030,7 +1030,7 @@ const eventsList = [
 {
   id: '59',
   title: 'Extravaganza - Ahmedabad',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Virat Kohli',
   genre: 'kabaddi',
   date: '2025-08-18',
@@ -1083,7 +1083,7 @@ const eventsList = [
 {
   id: '62',
   title: 'Festival - Chennai',
-  type: 'concert',
+  type: 'Concert',
   artist: 'AP Dhillon',
   genre: 'cricket',
   date: '2026-04-02',
@@ -1134,7 +1134,7 @@ const eventsList = [
 {
   id: '65',
   title: 'Madness - Kolkata',
-  type: 'sports',
+  type: 'sport',
   artist: 'Virat Kohli',
   genre: 'electronic',
   date: '2025-08-18',
@@ -1212,14 +1212,14 @@ const eventsList = [
   description: 'Experience - Pune happening live in Pune',
   image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80',
   tags: [
-    'sports',
+    'sport',
     'cricket'
   ]
 },
 {
   id: '70',
   title: 'Experience - Bengaluru',
-  type: 'sports',
+  type: 'sport',
   artist: 'Arijit Singh',
   genre: 'cricket',
   date: '2026-04-15',
@@ -1287,7 +1287,7 @@ const eventsList = [
 {
   id: '74',
   title: 'Extravaganza - Bengaluru',
-  type: 'sports',
+  type: 'sport',
   artist: 'Neha Kakkar',
   genre: 'bollywood',
   date: '2026-01-13',
@@ -1339,7 +1339,7 @@ const eventsList = [
 {
   id: '77',
   title: 'Clash - Chennai',
-  type: 'sports',
+  type: 'sport',
   artist: 'AP Dhillon',
   genre: 'kabaddi',
   date: '2025-09-14',
@@ -1356,7 +1356,7 @@ const eventsList = [
 {
   id: '78',
   title: 'Live - Hyderabad',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Ranveer Singh',
   genre: 'electronic',
   date: '2025-09-28',
@@ -1373,7 +1373,7 @@ const eventsList = [
 {
   id: '79',
   title: 'Clash - Jaipur',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Arijit Singh',
   genre: 'electronic',
   date: '2025-11-18',
@@ -1390,7 +1390,7 @@ const eventsList = [
 {
   id: '80',
   title: 'Extravaganza - Bengaluru',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Virat Kohli',
   genre: 'bollywood',
   date: '2025-10-29',
@@ -1400,7 +1400,7 @@ const eventsList = [
   description: 'Extravaganza - Bengaluru happening live in Bengaluru',
   image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=800&q=80',
   tags: [
-    'sports',
+    'sport',
     'cricket'
   ]
 },
@@ -1468,7 +1468,7 @@ const eventsList = [
   description: 'Tour - Chennai happening live in Chennai',
   image: 'https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=800&q=80',
   tags: [
-    'sports',
+    'sport',
     'cricket'
   ]
 },
@@ -1577,7 +1577,7 @@ const eventsList = [
 {
   id: '91',
   title: 'Experience - Delhi',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Virat Kohli',
   genre: 'standup',
   date: '2025-07-13',
@@ -1594,7 +1594,7 @@ const eventsList = [
 {
   id: '92',
   title: 'Live - Pune',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Rahul Subramanian',
   genre: 'electronic',
   date: '2025-05-13',
@@ -1611,7 +1611,7 @@ const eventsList = [
 {
   id: '93',
   title: 'Madness - Pune',
-  type: 'concert',
+  type: 'Concert',
   artist: 'AP Dhillon',
   genre: 'punjabi',
   date: '2025-05-27',
@@ -1628,7 +1628,7 @@ const eventsList = [
 {
   id: '94',
   title: 'Tour - Goa',
-  type: 'sports',
+  type: 'sport',
   artist: 'Coldplay',
   genre: 'punjabi',
   date: '2025-05-18',
@@ -1645,7 +1645,7 @@ const eventsList = [
 {
   id: '95',
   title: 'Experience - Delhi',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Various Artists',
   genre: 'pop/rock',
   date: '2025-05-01',
@@ -1689,7 +1689,7 @@ const eventsList = [
   description: 'Experience - Chennai happening live in Chennai',
   image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
   tags: [
-    'sports',
+    'sport',
     'cricket'
   ]
 },
@@ -1764,7 +1764,7 @@ const eventsList = [
 {
   id: '102',
   title: 'Experience - Ahmedabad',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Arijit Singh',
   genre: 'cricket',
   date: '2025-05-28',
@@ -1781,7 +1781,7 @@ const eventsList = [
 {
   id: '103',
   title: 'Madness - Goa',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Coldplay',
   genre: 'bollywood',
   date: '2026-03-21',
@@ -1849,7 +1849,7 @@ const eventsList = [
 {
   id: '107',
   title: 'Clash - Jaipur',
-  type: 'sports',
+  type: 'sport',
   artist: 'Various Artists',
   genre: 'cricket',
   date: '2025-05-27',
@@ -1867,7 +1867,7 @@ const eventsList = [
 {
   id: '108',
   title: 'Festival - Mumbai',
-  type: 'concert',
+  type: 'Concert',
   artist: 'Divine',
   genre: 'rap/hip-hop',
   date: '2025-08-14',

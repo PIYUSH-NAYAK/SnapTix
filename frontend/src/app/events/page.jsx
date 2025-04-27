@@ -82,7 +82,7 @@ export default function EventsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-900 text-white">
+    <main className="min-h-screen bg-gray-900 text-white pt-[calc(3rem+1px)]">
       {/* <header className="bg-black/30 backdrop-blur-sm py-6 px-4 md:px-8">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <Link href="/" className="text-3xl font-bold text-pink-500">SnapTix</Link>

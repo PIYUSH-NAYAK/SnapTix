@@ -39,7 +39,7 @@ export default function DiscoverPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-900 text-white">
+    <main className="pt-[calc(3rem+1px)] min-h-screen bg-gray-900 text-white">
       {/* <header className="bg-black/30 backdrop-blur-sm py-6 px-4 md:px-8">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <Link href="/" className="text-3xl font-bold text-pink-500">
@@ -93,7 +93,6 @@ export default function DiscoverPage() {
                 </svg>
               </Link>
             </div>
-            // Replace the event card section inside the grid
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {getEventsByCategory(category).map((event) => (
                 <Link

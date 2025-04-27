@@ -153,7 +153,7 @@ export default function MyTicketsPage() {
   }
 
   return (
-    <div className="bg-gray-900 min-h-screen text-white">
+    <div className="pt-[calc(3rem+1px)] bg-gray-900 min-h-screen text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold">My Tickets</h1>

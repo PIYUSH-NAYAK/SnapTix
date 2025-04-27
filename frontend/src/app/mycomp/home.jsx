@@ -123,7 +123,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col">
+    <main className=" min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex flex-col">
       {/* Hero Section */}
       <section className="min-h-[80vh] flex flex-col justify-center items-center text-center px-4 bg-gradient-to-br from-gray-900 via-pink-900/20 to-gray-900 relative overflow-hidden">
         {/* Animated background elements */}

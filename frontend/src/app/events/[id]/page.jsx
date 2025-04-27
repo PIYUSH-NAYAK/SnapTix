@@ -316,7 +316,7 @@ export default function EventDetailsPage() {
   if (!event) return <div className="text-center py-10">Event not found</div>;
 
   return (
-    <div className="bg-gray-900 min-h-screen text-white">
+    <div className="bg-gray-900 min-h-screen text-white pt-[calc(3rem+1px)]">
       <div className="container mx-auto px-4 py-8">
         {/* Event Header */}
         <div className="flex flex-wrap mb-8">

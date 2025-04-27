@@ -52,7 +52,7 @@ export default function Signup() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center p-4">
+    <main className="pt-[calc(3rem+1px)] min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center p-4">
       <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl max-w-md w-full">
         <h1 className="text-3xl font-bold mb-6 text-center text-pink-500">Sign Up for SnapTix</h1>
         

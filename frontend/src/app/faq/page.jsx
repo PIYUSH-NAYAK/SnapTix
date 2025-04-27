@@ -122,7 +122,7 @@ export default function FAQ() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
+    <main className="pt-[calc(3rem+1px)] min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
       <div className="max-w-4xl mx-auto px-4 py-12">
         <h1 className="text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">Frequently Asked Questions</h1>
         <p className="text-gray-400 mb-8">Find answers to common questions about SnapTix</p>
