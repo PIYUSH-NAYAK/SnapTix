@@ -424,17 +424,40 @@ export default function EventDetailsPage() {
                 {seats.map((seat, index) => (
                   <motion.button
                     key={seat}
-                    onClick={() => setSelectedSeat(seat)}
+                    onClick={() => {
+                      // If this seat is already selected, keep it selected
+                      // Otherwise, deselect the previous seat and select this one
+                      setSelectedSeat(seat);
+                    }}
                     className={`py-2 px-4 border ${
                       selectedSeat === seat
-                        ? "border-pink-500 bg-pink-500/30"
-                        : "border-gray-700"
-                    } rounded-lg text-center hover:border-pink-500 transition duration-200`}
-                    whileHover={{ scale: 1.05, backgroundColor: "rgba(236, 72, 153, 0.1)" }}
-                    whileTap={{ scale: 0.95 }}
+                        ? "border-pink-500 bg-pink-600 text-white font-medium" 
+                        : "border-gray-700 hover:border-pink-500/70"
+                    } rounded-lg text-center transition duration-200`}
+                    whileHover={{ 
+                      scale: 1.05, 
+                      backgroundColor: selectedSeat === seat ? "rgb(219, 39, 119)" : "rgba(236, 72, 153, 0.1)" 
+                    }}
+                    whileTap={{ 
+                      scale: 0.95,
+                      backgroundColor: "rgb(219, 39, 119)",
+                      borderColor: "rgb(236, 72, 153)",
+                      color: "white"
+                    }}
                     initial={{ opacity: 0, y: 10 }}
-                    animate={seatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                    transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }}
+                    animate={seatsInView ? { 
+                      opacity: 1, 
+                      y: 0,
+                      backgroundColor: selectedSeat === seat ? "rgb(219, 39, 119)" : "transparent",
+                      boxShadow: selectedSeat === seat 
+                        ? "0 0 0 1px rgba(236, 72, 153, 0.5), 0 0 15px rgba(236, 72, 153, 0.35)" 
+                        : "none",
+                    
+                    } : { 
+                      opacity: 0, 
+                      y: 10 
+                    }}
+                    
                   >
                     {seat}
                   </motion.button>
@@ -578,4 +601,6 @@ export default function EventDetailsPage() {
       </div>
     </div>
   );
+
+
 }

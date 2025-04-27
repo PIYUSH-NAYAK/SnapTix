@@ -23,21 +23,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.className}> {/* Applying font to the entire HTML */}
+    <html lang="en" className={inter.className}>
       <body className="antialiased bg-black">
         <AuthProvider>
-          {/* Navbar is placed outside ProtectedRoute so it shows on all pages */}
           <Navbar />
-          
+
           <ProtectedRoute>
             <PageTransition>
               {children}
             </PageTransition>
           </ProtectedRoute>
-          
-          {/* Footer is placed outside ProtectedRoute so it shows on all pages */}
+
           <Footer />
-          
+
           <Toaster position="top-center" toastOptions={{
             style: {
               background: '#333',
