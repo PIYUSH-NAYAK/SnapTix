@@ -1,3 +1,6 @@
+![github-submission-banner](https://github.com/user-attachments/assets/a1493b84-e4e2-456e-a791-ce35ee2bcf2f)
+
+
 # SnapTix - Blockchain-based Event Ticketing Platform
 
 SnapTix is an innovative event discovery and ticketing platform that uses blockchain technology to securely issue and verify event tickets as NFTs. The platform helps users find events that match their interests and provides a seamless ticket purchasing experience with protection against counterfeiting.
