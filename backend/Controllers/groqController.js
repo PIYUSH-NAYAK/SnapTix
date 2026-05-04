@@ -1,4 +1,4 @@
-const { fetchGroqResponse } = require('../Service/groqService');
+const { fetchAIResponse } = require('../Service/aiService');
 const { eventCache } = require('../Service/eventCache');
 
 // Controller function to handle user input and Groq API interaction
@@ -14,7 +14,7 @@ const getEventDetails = async (req, res) => {
 
   try {
     // Get AI response from Groq
-    const groqResponse = await fetchGroqResponse(userQuery);
+    const groqResponse = await fetchAIResponse(userQuery, eventCache);
     
     // Extract structured data from the response
     const parsedData = parseGroqResponse(groqResponse);
@@ -62,7 +62,7 @@ function parseGroqResponse(response) {
 
 // Helper function to extract attributes
 function extractAttribute(text, attr, possibleValues = []) {
-  const regex = new RegExp(`${attr}[:\\s]+(\\w+)`, 'i');
+  const regex = new RegExp(`${attr}[:\\s]+([^,\n"{}]+)`, 'i');
   const match = text.match(regex);
   
   if (match && match[1]) return match[1];

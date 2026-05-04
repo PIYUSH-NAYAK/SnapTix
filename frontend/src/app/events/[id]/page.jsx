@@ -12,10 +12,13 @@ import {
 } from "../../../services/web3Service";
 import { getEventById, getSuggestedEvents } from "../../services/chatApi";
 import { ethers } from "ethers";
+import { useAuth } from "../../../context/AuthContext";
+import toast from "react-hot-toast";
 
 export default function EventDetailsPage() {
   const { id } = useParams();
   const router = useRouter();
+  const { authFetch } = useAuth();
   const [event, setEvent] = useState(null);
   const [suggestedEvents, setSuggestedEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,11 +27,17 @@ export default function EventDetailsPage() {
   const [buying, setBuying] = useState(false);
   const [selectedSeat, setSelectedSeat] = useState("");
   const [txHash, setTxHash] = useState("");
+  const [buyingStep, setBuyingStep] = useState("");
   const [ethPrice, setEthPrice] = useState(null);
   const [exchangeRate, setExchangeRate] = useState(null);
-  const [seats] = useState([
-    "A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3",
-  ]);
+  const [bookedSeats, setBookedSeats] = useState([]);
+
+  // Generate rows A-F, seats 1-8
+  const rows = ["A", "B", "C", "D", "E", "F"];
+  const seatsPerRow = 8;
+  const allSeats = rows.flatMap((row) =>
+    Array.from({ length: seatsPerRow }, (_, i) => `${row}${i + 1}`)
+  );
   
   // Animation refs
   const [mainImageRef, mainImageInView] = useInView({ threshold: 0.2, triggerOnce: true });
@@ -77,7 +86,14 @@ export default function EventDetailsPage() {
     }
 
     fetchEvent();
-    checkWalletStatus(); // This won't force a connection
+    checkWalletStatus();
+
+    // Fetch booked seats for this event
+    const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000/api";
+    fetch(`${BACKEND}/events/${id}/booked-seats`)
+      .then((r) => r.json())
+      .then((d) => { if (d.success) setBookedSeats(d.seats); })
+      .catch(() => {});
   }, [id]);
 
   // Add a separate useEffect to fetch the exchange rate when event data is available
@@ -129,17 +145,18 @@ export default function EventDetailsPage() {
   // Handle buying a ticket
   const handleBuyTicket = async () => {
     if (!walletConnected) {
-      alert("Please connect your wallet first");
+      toast.error("Please connect your wallet first");
       return;
     }
 
     if (!selectedSeat) {
-      alert("Please select a seat");
+      toast.error("Please select a seat");
       return;
     }
 
     try {
       setBuying(true);
+      setBuyingStep("Converting price...");
 
       // Extract numeric price value from string (e.g. "₹150" -> 150)
       let priceInINR = 0;
@@ -197,26 +214,52 @@ export default function EventDetailsPage() {
       console.log("Price (ETH):", priceInEth);
       console.log("Price (Wei):", priceInWei.toString());
 
-      const hash = await buyTicket(eventIdNum, selectedSeat, priceInWei);
+      setBuyingStep("Confirm the transaction in MetaMask...");
+      const hash = await buyTicket(eventIdNum, selectedSeat, priceInWei, setBuyingStep);
       setTxHash(hash);
+      setBuyingStep("Saving your booking...");
 
-      alert(`Success! Ticket purchased for ₹${priceInINR} (${priceInEth} ETH). Transaction hash: ${hash}`);
+      // Save booking to MongoDB
+      try {
+        await authFetch("/bookings", {
+          method: "POST",
+          body: JSON.stringify({
+            eventId: id,
+            eventTitle: event.title,
+            eventDate: event.date,
+            eventLocation: event.location,
+            eventImage: event.image,
+            seatInfo: selectedSeat,
+            price: event.price,
+            txHash: hash,
+          }),
+        });
+      } catch (err) {
+        console.warn("Failed to save booking to backend:", err.message);
+      }
+
+      setBookedSeats((prev) => [...prev, selectedSeat]);
+      setSelectedSeat("");
+      setBuyingStep("");
+      toast.success("🎟️ Ticket purchased! Redirecting to My Tickets...", { duration: 3000 });
+      setTimeout(() => router.push("/my-tickets"), 2000);
 
     } catch (err) {
       console.error("Error buying ticket:", err);
       
       // Provide more specific error messages based on common issues
       if (err.code === 4001) {
-        alert("Transaction was rejected. Please try again.");
-      } else if (err.message.includes("insufficient funds")) {
-        alert("You don't have enough ETH in your wallet to complete this purchase.");
-      } else if (err.message.includes("failed to fetch")) {
-        alert("Failed to get currency conversion rate. Please try again later.");
+        toast.error("Transaction rejected. Please try again.");
+      } else if (err.message?.includes("insufficient funds")) {
+        toast.error("Not enough ETH in your wallet.");
+      } else if (err.message?.includes("MetaMask not found")) {
+        toast.error("MetaMask not found. Please install it.");
       } else {
-        alert("Failed to buy ticket: " + err.message);
+        toast.error("Failed to buy ticket: " + (err.reason || err.message));
       }
     } finally {
       setBuying(false);
+      setBuyingStep("");
     }
   };
 
@@ -378,6 +421,57 @@ export default function EventDetailsPage() {
 
   return (
     <div className="bg-black min-h-screen text-white pt-[calc(3rem+1px)]">
+
+      {/* Purchase loading overlay */}
+      {buying && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center gap-6"
+        >
+          {/* Spinning ring */}
+          <div className="relative w-20 h-20">
+            <div className="absolute inset-0 rounded-full border-4 border-pink-500/20" />
+            <motion.div
+              className="absolute inset-0 rounded-full border-4 border-t-pink-500 border-r-purple-500 border-b-transparent border-l-transparent"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            />
+            <div className="absolute inset-0 flex items-center justify-center text-2xl">🎟️</div>
+          </div>
+
+          <div className="text-center">
+            <p className="text-white font-semibold text-lg mb-1">Processing your ticket</p>
+            <motion.p
+              key={buyingStep}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-gray-400 text-sm"
+            >
+              {buyingStep}
+            </motion.p>
+          </div>
+
+          {/* Steps */}
+          <div className="flex flex-col gap-2 text-sm w-64">
+            {[
+              "Converting price...",
+              "Confirm the transaction in MetaMask...",
+              "Creating event on-chain...",
+              "Saving your booking...",
+            ].map((step) => (
+              <div key={step} className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all ${
+                buyingStep === step
+                  ? "bg-pink-500/20 text-pink-300 border border-pink-500/30"
+                  : "text-gray-600"
+              }`}>
+                <span>{buyingStep === step ? "⏳" : "○"}</span>
+                <span>{step}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
       <div className="container mx-auto px-4 py-8">
         {/* Event Header */}
         <div className="flex flex-wrap mb-8">
@@ -419,50 +513,57 @@ export default function EventDetailsPage() {
               animate={seatsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              <h2 className="text-xl font-semibold mb-2">Select a Seat</h2>
-              <div className="grid grid-cols-3 gap-2">
-                {seats.map((seat, index) => (
-                  <motion.button
-                    key={seat}
-                    onClick={() => {
-                      // If this seat is already selected, keep it selected
-                      // Otherwise, deselect the previous seat and select this one
-                      setSelectedSeat(seat);
-                    }}
-                    className={`py-2 px-4 border ${
-                      selectedSeat === seat
-                        ? "border-pink-500 bg-pink-600 text-white font-medium" 
-                        : "border-gray-700 hover:border-pink-500/70"
-                    } rounded-lg text-center transition duration-200`}
-                    whileHover={{ 
-                      scale: 1.05, 
-                      backgroundColor: selectedSeat === seat ? "rgb(219, 39, 119)" : "rgba(236, 72, 153, 0.1)" 
-                    }}
-                    whileTap={{ 
-                      scale: 0.95,
-                      backgroundColor: "rgb(219, 39, 119)",
-                      borderColor: "rgb(236, 72, 153)",
-                      color: "white"
-                    }}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={seatsInView ? { 
-                      opacity: 1, 
-                      y: 0,
-                      backgroundColor: selectedSeat === seat ? "rgb(219, 39, 119)" : "transparent",
-                      boxShadow: selectedSeat === seat 
-                        ? "0 0 0 1px rgba(236, 72, 153, 0.5), 0 0 15px rgba(236, 72, 153, 0.35)" 
-                        : "none",
-                    
-                    } : { 
-                      opacity: 0, 
-                      y: 10 
-                    }}
-                    
-                  >
-                    {seat}
-                  </motion.button>
+              <h2 className="text-xl font-semibold mb-3">Select a Seat</h2>
+
+              {/* Legend */}
+              <div className="flex gap-4 mb-3 text-xs text-gray-400">
+                <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-gray-700 inline-block" /> Available</span>
+                <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-pink-600 inline-block" /> Selected</span>
+                <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-gray-600 opacity-40 inline-block" /> Booked</span>
+              </div>
+
+              {/* Stage indicator */}
+              <div className="w-full text-center text-xs text-gray-500 mb-2 border-t border-gray-700 pt-2">STAGE</div>
+
+              {/* Seat grid — rows */}
+              <div className="space-y-1.5">
+                {rows.map((row) => (
+                  <div key={row} className="flex items-center gap-1.5">
+                    <span className="text-xs text-gray-500 w-4 flex-shrink-0">{row}</span>
+                    <div className="flex gap-1.5 flex-wrap">
+                      {Array.from({ length: seatsPerRow }, (_, i) => {
+                        const seat = `${row}${i + 1}`;
+                        const isBooked = bookedSeats.includes(seat);
+                        const isSelected = selectedSeat === seat;
+                        return (
+                          <motion.button
+                            key={seat}
+                            disabled={isBooked}
+                            onClick={() => setSelectedSeat(isSelected ? "" : seat)}
+                            whileHover={isBooked ? {} : { scale: 1.1 }}
+                            whileTap={isBooked ? {} : { scale: 0.95 }}
+                            className={`w-8 h-8 rounded text-xs font-medium transition-all ${
+                              isBooked
+                                ? "bg-gray-700 text-gray-600 cursor-not-allowed opacity-40"
+                                : isSelected
+                                ? "bg-pink-600 text-white shadow-lg shadow-pink-500/30 border border-pink-400"
+                                : "bg-gray-800 text-gray-300 border border-gray-700 hover:border-pink-500 hover:bg-pink-500/10"
+                            }`}
+                          >
+                            {i + 1}
+                          </motion.button>
+                        );
+                      })}
+                    </div>
+                  </div>
                 ))}
               </div>
+
+              {selectedSeat && (
+                <p className="mt-3 text-sm text-pink-400 font-medium">
+                  Selected: <span className="text-white">{selectedSeat}</span>
+                </p>
+              )}
             </motion.div>
 
             {/* Buy Ticket Section */}

@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize Analytics - only in browser environment
 let analytics = null;
 if (typeof window !== 'undefined') {
-  analytics = getAnalytics(app);
+  try { analytics = getAnalytics(app); } catch {}
 }
 
 // Initialize Firebase Authentication and get a reference to the service
