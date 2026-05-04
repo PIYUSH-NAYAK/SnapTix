@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+.env.local
+
+# Firebase / service account credentials
+firebase-service-account.json
+*-service-account.json
+serviceAccountKey.json
+
+# Private keys / certs
+*.pem
+*.key
+
+# Next.js build
+.next/
+out/
+
+# Hardhat / Solidity
+artifacts/
+cache/
+typechain/
+typechain-types/
+
+# OS
+.DS_Store
+Thumbs.db
