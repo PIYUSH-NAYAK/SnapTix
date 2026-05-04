@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@wagmi/connectors": "^8.0.9",
-    "@wagmi/core": "^2.16.7",
+    "@wagmi/connectors": "^5.11.2",
+    "@wagmi/core": "^2.22.1",
     "axios": "^1.8.4",
     "ethers": "^6.13.5",
     "firebase": "^11.6.1",
@@ -24,7 +24,7 @@
     "react-intersection-observer": "^9.16.0",
     "react-qr-code": "^2.0.15",
     "viem": "^2.27.2",
-    "wagmi": "^3.6.9"
+    "wagmi": "^2.19.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
