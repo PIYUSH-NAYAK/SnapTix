@@ -15,7 +15,7 @@
     "ethers": "^6.13.5",
     "firebase": "^11.6.1",
     "framer-motion": "^12.9.2",
-    "next": "15.3.0",
+    "next": "15.3.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-firebase-hooks": "^5.1.1",
