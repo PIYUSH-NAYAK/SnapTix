@@ -101,15 +101,14 @@ export default function EventDetailsPage() {
     // Function to fetch ETH to INR rate
     async function fetchEthPrice() {
       try {
-        const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=inr");
+        const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000/api";
+        const response = await fetch(`${BACKEND}/eth-price`);
         const data = await response.json();
-        setExchangeRate(data.ethereum.inr);
-        
-        // If we have event price, calculate ETH equivalent
+        setExchangeRate(data.inr);
         if (event?.price) {
           const priceInINR = parseFloat(event.price.replace(/[^0-9.]/g, ''));
           if (!isNaN(priceInINR)) {
-            setEthPrice((priceInINR / data.ethereum.inr).toFixed(6));
+            setEthPrice((priceInINR / data.inr).toFixed(6));
           }
         }
       } catch (err) {
@@ -179,11 +178,10 @@ export default function EventDetailsPage() {
       } else {
         // Fetch live exchange rate (INR to ETH) if not already available
         try {
-          const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=inr");
+          const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000/api";
+          const response = await fetch(`${BACKEND}/eth-price`);
           const data = await response.json();
-          
-          // Get ETH/INR rate
-          const ethInrRate = data.ethereum.inr;
+          const ethInrRate = data.inr;
           setExchangeRate(ethInrRate);
           
           // Convert INR to ETH

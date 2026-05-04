@@ -111,4 +111,23 @@ router.get('/events/:id', (req, res) => {
   });
 });
 
+// ETH/INR price proxy (avoids CORS on CoinGecko free tier)
+let cachedEthPrice = null;
+let cacheTime = 0;
+router.get('/eth-price', async (req, res) => {
+  try {
+    if (cachedEthPrice && Date.now() - cacheTime < 60_000) {
+      return res.json({ inr: cachedEthPrice });
+    }
+    const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=inr');
+    const data = await response.json();
+    cachedEthPrice = data.ethereum.inr;
+    cacheTime = Date.now();
+    res.json({ inr: cachedEthPrice });
+  } catch (err) {
+    if (cachedEthPrice) return res.json({ inr: cachedEthPrice });
+    res.status(502).json({ error: 'Failed to fetch ETH price' });
+  }
+});
+
 module.exports = router;
