@@ -57,13 +57,6 @@ export default function TestimonialsSection({
                   transition={{ duration: 0.5 }}
                   className="absolute top-0 left-0 w-full bg-gray-800/40 backdrop-blur-md p-8 rounded-2xl border border-gray-700/50 text-center"
                 >
-                  <div className="flex justify-center mb-6">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name}
-                      className="w-20 h-20 rounded-full border-2 border-pink-500 object-cover" 
-                    />
-                  </div>
                   <p className="text-lg text-gray-300 mb-6 italic">"{testimonial.comment}"</p>
                   <h4 className="font-medium text-white mb-1">{testimonial.name}</h4>
                   <div className="flex items-center justify-center gap-2">

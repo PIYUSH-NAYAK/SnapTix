@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'; // Using Google font Inter
 import './globals.css';
 import Navbar from './mycomp/Navbar';
 import { AuthProvider } from '../context/AuthContext';
-import Footer from './mycomp/home/Footer';
+import ConditionalFooter from '../components/ConditionalFooter';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { Toaster } from 'react-hot-toast';
 import PageTransition from '../components/PageTransition';
@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
             </PageTransition>
           </ProtectedRoute>
 
-          <Footer />
+          <ConditionalFooter />
 
           <Toaster position="top-center" toastOptions={{
             style: {

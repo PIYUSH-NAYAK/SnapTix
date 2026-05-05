@@ -4,9 +4,10 @@ const { eventCache } = require('../Service/eventCache');
 // Controller function to handle user input and Groq API interaction
 const getEventDetails = async (req, res) => {
   const userQuery = req.body.query;
+  const conversationHistory = req.body.history || [];
 
   if (!userQuery) {
-    return res.status(400).json({ 
+    return res.status(400).json({
       success: false,
       message: 'No query provided'
     });
@@ -14,14 +15,20 @@ const getEventDetails = async (req, res) => {
 
   try {
     // Get AI response from Groq
-    const groqResponse = await fetchAIResponse(userQuery, eventCache);
-    
+    const groqResponse = await fetchAIResponse(userQuery, eventCache, conversationHistory);
+
+    // If the AI refused the query as off-topic, return no events
+    const isOffTopic = groqResponse.includes('I can only help with SnapTix events and tickets');
+    if (isOffTopic) {
+      return res.json({ success: true, reply: groqResponse, parsed: {}, events: [] });
+    }
+
     // Extract structured data from the response
     const parsedData = parseGroqResponse(groqResponse);
-    
+
     // Filter events based on the parsed data
     const matchedEvents = filterEvents(parsedData);
-    
+
     res.json({
       success: true,
       reply: groqResponse,
@@ -81,38 +88,43 @@ function extractAttribute(text, attr, possibleValues = []) {
 
 // Helper function to filter events
 function filterEvents(criteria) {
+  const hasCriteria = criteria.eventType || criteria.location || criteria.artist || criteria.genre || criteria.date;
+
+  // No meaningful criteria extracted — don't dump all events
+  if (!hasCriteria) return [];
+
   let filteredEvents = [...eventCache];
-  
+
   if (criteria.eventType) {
-    filteredEvents = filteredEvents.filter(event => 
+    filteredEvents = filteredEvents.filter(event =>
       event.type?.toLowerCase().includes(criteria.eventType.toLowerCase())
     );
   }
-  
+
   if (criteria.location) {
-    filteredEvents = filteredEvents.filter(event => 
+    filteredEvents = filteredEvents.filter(event =>
       event.location?.toLowerCase().includes(criteria.location.toLowerCase())
     );
   }
-  
+
   if (criteria.artist) {
-    filteredEvents = filteredEvents.filter(event => 
+    filteredEvents = filteredEvents.filter(event =>
       event.artist?.toLowerCase().includes(criteria.artist.toLowerCase())
     );
   }
-  
+
   if (criteria.genre) {
-    filteredEvents = filteredEvents.filter(event => 
+    filteredEvents = filteredEvents.filter(event =>
       event.genre?.toLowerCase().includes(criteria.genre.toLowerCase())
     );
   }
-  
+
   if (criteria.date) {
-    filteredEvents = filteredEvents.filter(event => 
+    filteredEvents = filteredEvents.filter(event =>
       event.date?.includes(criteria.date)
     );
   }
-  
+
   return filteredEvents;
 }
 

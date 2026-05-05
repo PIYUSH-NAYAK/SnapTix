@@ -54,24 +54,23 @@ export const getEventById = async (id) => {
   }
 };
 
-export const askAI = async (query) => {
+export const askAI = async (query, history = []) => {
   try {
-    const response = await axios.post(`${API_URL}/groq`, { query });
-    
-    // If the response contains the rejection message, return an empty events array
+    const response = await axios.post(`${API_URL}/groq`, { query, history });
+
     if (response.data.reply && response.data.reply.includes("I think there might be some confusion!")) {
       return {
         success: true,
         reply: response.data.reply,
-        events: [] // Don't return any events for non-event queries
+        events: []
       };
     }
-    
+
     return response.data;
   } catch (error) {
     console.error('Error querying AI:', error);
-    return { 
-      success: false, 
+    return {
+      success: false,
       reply: 'Sorry, I had trouble processing your request.',
       events: []
     };

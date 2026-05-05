@@ -104,11 +104,12 @@ export default function EventDetailsPage() {
         const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000/api";
         const response = await fetch(`${BACKEND}/eth-price`);
         const data = await response.json();
-        setExchangeRate(data.inr);
+        const rate = data.inr || 220000;
+        setExchangeRate(rate);
         if (event?.price) {
           const priceInINR = parseFloat(event.price.replace(/[^0-9.]/g, ''));
           if (!isNaN(priceInINR)) {
-            setEthPrice((priceInINR / data.inr).toFixed(6));
+            setEthPrice((priceInINR / rate).toFixed(6));
           }
         }
       } catch (err) {
@@ -181,7 +182,7 @@ export default function EventDetailsPage() {
           const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000/api";
           const response = await fetch(`${BACKEND}/eth-price`);
           const data = await response.json();
-          const ethInrRate = data.inr;
+          const ethInrRate = data.inr || 220000;
           setExchangeRate(ethInrRate);
           
           // Convert INR to ETH
