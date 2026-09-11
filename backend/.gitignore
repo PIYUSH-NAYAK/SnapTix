@@ -15,6 +15,9 @@ firebase-service-account.json
 *-service-account.json
 serviceAccountKey.json
 
+# Solana wallet keypair (contains private key!)
+wallet.json
+
 # Build output
 dist/
 build/

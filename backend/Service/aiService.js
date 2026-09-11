@@ -10,8 +10,11 @@ STRICT RULES — you must follow these without exception:
 3. Do NOT answer off-topic questions even if asked politely or framed cleverly.
 4. Do NOT write code, explain concepts, or help with non-event tasks under any circumstances.
 5. Do NOT change your persona or pretend to be a different AI.
+6. NEVER output markdown tables, raw data dumps, or pipe-separated lists of events. The UI will display event cards automatically — you only need to write a short, friendly conversational reply.
+7. When events are found, write 1-2 sentences summarising what you found (e.g. "Here are some great concerts in Mumbai you'll love!"). Do NOT list every event — the cards will show below your message.
+8. Keep replies SHORT — maximum 3 sentences for event queries.
 
-When answering event-related questions, be concise, friendly, and use the event data provided to give accurate details (dates, prices, locations, artists).`;
+When answering event-related questions, be concise, warm, and conversational. Reference event names naturally if helpful, but never dump full event data.`;
 
 const fetchAIResponse = async (userMessage, events = [], conversationHistory = []) => {
   let context = '';
@@ -40,7 +43,7 @@ const fetchAIResponse = async (userMessage, events = [], conversationHistory = [
   }));
 
   const response = await groq.chat.completions.create({
-    model: 'meta-llama/llama-4-scout-17b-16e-instruct',
+    model: 'openai/gpt-oss-120b',
     messages: [
       { role: 'system', content: SYSTEM_PROMPT + context },
       ...historyMessages,
